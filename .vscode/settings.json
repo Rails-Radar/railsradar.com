@@ -1,9 +1,3 @@
 {
-  "extensions.ignoreRecommendations": false,
-  "extensions.autoUpdate": true,
-  "extensions.recommendations": [
-    "aki77.rails-routes",
-    "aliariff.vscode-erb-beautify",
-    "castwide.solargraph"
-  ]
+  "extensions.ignoreRecommendations": false
 }
