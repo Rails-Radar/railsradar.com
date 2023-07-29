@@ -9,7 +9,27 @@
 </div>
 
 <div class="container py-12 md:items-center md:justify-between">
-  <%= render RadarUpperRightComponent.new(blips: @team.blips.joins(:interesting_thing).where({interesting_thing: {kind: 'tool'}})) %>
-  We have <%=@team.blips.count%> Blips on our Radar.
+  <div class="grid grid-cols-2 gap-4">
+    <%= render RadarComponent.new(
+      blips: @team.blips.joins(:interesting_thing).where({interesting_thing: {kind: 'tool'}}),
+      quadrant: :tl
+    ) %>
+
+  <%= render RadarComponent.new(
+    blips: @team.blips.joins(:interesting_thing).where({interesting_thing: {kind: 'technique'}}),
+    quadrant: :tr
+  ) %>
+
+   <%= render RadarComponent.new(
+    blips: @team.blips.joins(:interesting_thing).where({interesting_thing: {kind: 'gem'}}),
+    quadrant: :bl
+  ) %>
+
+  <%= render RadarComponent.new(
+    blips: @team.blips.joins(:interesting_thing).where({interesting_thing: {kind: 'infrastructure'}}),
+    quadrant: :br
+  ) %>
+  </div>
+  
 </div>
 

@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-class RadarUpperRightComponent < ViewComponent::Base
-  def initialize(blips:)
+class RadarComponent < ViewComponent::Base
+  def initialize(blips:, quadrant:)
+
+    raise `Not a valid quadrant` unless %I[tl tr bl br].include?(quadrant)
+
     @dot_radius = 10
     @image_size = 512
     
@@ -43,6 +46,7 @@ class RadarUpperRightComponent < ViewComponent::Base
     Math::PI * degrees / 180.0
   end
 
+  
   def place_blips(blips, range)
     middle = (range.first + range.last) / 2
     radial_deviation = (range.last - range.first) / 2 * 0.7
