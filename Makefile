@@ -19,8 +19,7 @@ setup: # Setup the project
 	bin/rails db:setup
 
 reset: clean # Reset the project
-	bin/rails db:reset
-	
+	bin/rails db:reset	
 
 ## Testing and Linting
 

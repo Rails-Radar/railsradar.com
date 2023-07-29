@@ -84,3 +84,5 @@ gem "omniauth", "~> 2.1"
 gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 gem "omniauth-github", "~> 2.0"
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
