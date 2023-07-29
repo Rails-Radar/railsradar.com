@@ -10,9 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_024307) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_29_050353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "community_blips", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "stage"
+    t.integer "group"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "team_blips", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.string "name"
+    t.text "description"
+    t.string "stage"
+    t.string "group"
+    t.bigint "community_blip_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_blip_id"], name: "index_team_blips_on_community_blip_id"
+    t.index ["team_id"], name: "index_team_blips_on_team_id"
+  end
+
+  create_table "team_users", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_team_users_on_team_id"
+    t.index ["user_id"], name: "index_team_users_on_user_id"
+  end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
@@ -34,4 +65,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_024307) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "team_blips", "community_blips"
+  add_foreign_key "team_blips", "teams"
+  add_foreign_key "team_users", "teams"
+  add_foreign_key "team_users", "users"
 end

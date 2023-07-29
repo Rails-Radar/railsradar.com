@@ -8,6 +8,7 @@
     "aki77.rails-routes",
     "aliariff.vscode-erb-beautify",
     "castwide.solargraph",
-    "ms-vscode.makefile-tools"
+    "ms-vscode.makefile-tools",
+    "matt-meyers.vscode-dbml"
   ]
 }
