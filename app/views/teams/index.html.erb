@@ -12,3 +12,4 @@
 </div>
 <%= current_user %>
 <%= button_to 'Sign in with GitHub', user_github_omniauth_authorize_path, data: { turbo: false }, method: :post %>
+<%= render RadarQuadrentComponent.new(quadrant: 4, num_dots: 10) %>
