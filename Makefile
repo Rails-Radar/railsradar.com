@@ -24,7 +24,7 @@ reset: clean # Reset the project
 ## Testing and Linting
 
 lint: # Run rubocop
-	bin/rubocop -A
+	rubocop -A
 
 test-all: # Run all tests
 	bin/rails test:all

@@ -1,0 +1,22 @@
+<div id="<%= dom_id blip %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Interesting thing:</strong>
+    <%= blip.interesting_thing_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Team:</strong>
+    <%= blip.team_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Stage:</strong>
+    <%= blip.stage %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this blip", blip, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this blip', edit_blip_path(blip), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,28 +12,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_024307) do
+ActiveRecord::Schema[7.0].define(version: 20_230_729_135_109) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'blips', force: :cascade do |t|
+    t.bigint 'interesting_thing_id', null: false
+    t.bigint 'team_id', null: false
+    t.integer 'stage'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['interesting_thing_id'], name: 'index_blips_on_interesting_thing_id'
+    t.index ['team_id'], name: 'index_blips_on_team_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "provider"
-    t.string "uid"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  create_table 'interesting_things', force: :cascade do |t|
+    t.string 'name'
+    t.text 'description'
+    t.integer 'kind'
+    t.bigint 'team_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['team_id'], name: 'index_interesting_things_on_team_id'
   end
 
+  create_table 'team_users', force: :cascade do |t|
+    t.bigint 'team_id', null: false
+    t.bigint 'user_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['team_id'], name: 'index_team_users_on_team_id'
+    t.index ['user_id'], name: 'index_team_users_on_user_id'
+  end
+
+  create_table 'teams', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.boolean 'is_community'
+  end
+
+  create_table 'users', force: :cascade do |t|
+    t.string 'email', default: '', null: false
+    t.string 'encrypted_password', default: '', null: false
+    t.string 'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'provider'
+    t.string 'uid'
+    t.index ['email'], name: 'index_users_on_email', unique: true
+    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  end
+
+  add_foreign_key 'blips', 'interesting_things'
+  add_foreign_key 'blips', 'teams'
+  add_foreign_key 'interesting_things', 'teams'
+  add_foreign_key 'team_users', 'teams'
+  add_foreign_key 'team_users', 'users'
 end
