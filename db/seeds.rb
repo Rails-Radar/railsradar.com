@@ -98,5 +98,12 @@ techniques.each do |n|
 end
 
 platforms.each do |n|
-  InterestingThing.create(name: n, kind: :platform, team: community)
+  InterestingThing.create(name: n, kind: :infrastructure, team: community)
+end
+
+
+# Seed Blips
+
+InterestingThing.all.each do |thing|
+  Blip.create(interesting_thing: thing, team: community, stage: ['adopt', 'trial', 'assess', 'hold'].sample)
 end
