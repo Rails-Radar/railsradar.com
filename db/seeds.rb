@@ -1,8 +1,102 @@
 # frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+
+# Seed Community
+community = Team.create(name: 'Rails Community',
+                        is_community: true)
+
+tools = [
+  'Github Copilot',
+  'Faker',
+  'Brakeman',
+  'SimpleCov',
+  'Rubocop',
+  'Bundler',
+  'Pry',
+  'Rake',
+  'Make',
+  'Reek',
+  'Drawnscanner',
+  'Webpack',
+  'Ruby Vite'
+]
+
+gems = [
+  'Devise',
+  'Pundit',
+  'Kaminari',
+  'RailsAdmin',
+  'Webpacker',
+  'Bullet',
+  'Slim',
+  'Figaro',
+  'Rack-Attack',
+  'Delayed Job',
+  'Paperclip',
+  'Cancancan',
+  'Geocoder',
+  'Ransack'
+]
+
+techniques = [
+  'HTML Over the Wire',
+  'Service Objects',
+  'Form Objects',
+  'Presenters',
+  'Service Components',
+  'Interactors',
+  'Query Objects',
+  'Decorators',
+  'Policy Objects',
+  'Value Objects',
+  'View Objects',
+  'Event Sourcing',
+  'Event Sourced',
+  'CRUD',
+  'Event Driven',
+  'Domain Driven Design',
+  'Hexagonal Architecture',
+  'Observer Pattern',
+  'Command Query Responsibility Segregation',
+  'Code Generators',
+  'Utility CSS',
+  'Active Record Callbacks'
+]
+
+platforms = [
+  'Heroku',
+  'AWS App Runner',
+  'AWS Lambda',
+  'AWS ECS',
+  'AWS Fargate',
+  'AWS Elastic Beanstalk',
+  'Kubernetes',
+  'Digital Ocean',
+  'Google Cloud',
+  'Azure',
+  'Netlify',
+  'Vercel',
+  'Render',
+  'Fly.io',
+  'Linode',
+  'Rackspace',
+  'Cloudflare',
+  'Fastly',
+  'Akamai',
+  'Cloudinary'
+]
+
+tools.each do |n|
+  InterestingThing.create(name: n, kind: :tool, team: community)
+end
+
+gems.each do |n|
+  InterestingThing.create(name: n, kind: :gem, team: community)
+end
+
+techniques.each do |n|
+  InterestingThing.create(name: n, kind: :technique, team: community)
+end
+
+platforms.each do |n|
+  InterestingThing.create(name: n, kind: :platform, team: community)
+end
