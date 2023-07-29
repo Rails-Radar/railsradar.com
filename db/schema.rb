@@ -10,30 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_050353) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_29_135109) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "community_blips", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+  create_table "blips", force: :cascade do |t|
+    t.bigint "interesting_thing_id", null: false
+    t.bigint "team_id", null: false
     t.integer "stage"
-    t.integer "group"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["interesting_thing_id"], name: "index_blips_on_interesting_thing_id"
+    t.index ["team_id"], name: "index_blips_on_team_id"
   end
 
-  create_table "team_blips", force: :cascade do |t|
-    t.bigint "team_id", null: false
+  create_table "interesting_things", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.string "stage"
-    t.string "group"
-    t.bigint "community_blip_id", null: false
+    t.integer "kind"
+    t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["community_blip_id"], name: "index_team_blips_on_community_blip_id"
-    t.index ["team_id"], name: "index_team_blips_on_team_id"
+    t.index ["team_id"], name: "index_interesting_things_on_team_id"
   end
 
   create_table "team_users", force: :cascade do |t|
@@ -49,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_050353) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_community"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,8 +64,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_050353) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "team_blips", "community_blips"
-  add_foreign_key "team_blips", "teams"
+  add_foreign_key "blips", "interesting_things"
+  add_foreign_key "blips", "teams"
+  add_foreign_key "interesting_things", "teams"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
 end

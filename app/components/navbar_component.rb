@@ -14,6 +14,7 @@ class NavbarComponent < ViewComponent::Base
   end
 
   def initialize(current_user: nil)
+    super
     @current_user = current_user
   end
 end

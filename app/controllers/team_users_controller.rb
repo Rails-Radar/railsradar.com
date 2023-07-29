@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TeamUsersController < ApplicationController
-  before_action :set_team_user, only: %i[ show edit update destroy ]
+  before_action :set_team_user, only: %i[show edit update destroy]
 
   # GET /team_users or /team_users.json
   def index
@@ -7,8 +9,7 @@ class TeamUsersController < ApplicationController
   end
 
   # GET /team_users/1 or /team_users/1.json
-  def show
-  end
+  def show; end
 
   # GET /team_users/new
   def new
@@ -16,8 +17,7 @@ class TeamUsersController < ApplicationController
   end
 
   # GET /team_users/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /team_users or /team_users.json
   def create
@@ -25,7 +25,7 @@ class TeamUsersController < ApplicationController
 
     respond_to do |format|
       if @team_user.save
-        format.html { redirect_to team_user_url(@team_user), notice: "Team user was successfully created." }
+        format.html { redirect_to team_user_url(@team_user), notice: 'Team user was successfully created.' }
         format.json { render :show, status: :created, location: @team_user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class TeamUsersController < ApplicationController
   def update
     respond_to do |format|
       if @team_user.update(team_user_params)
-        format.html { redirect_to team_user_url(@team_user), notice: "Team user was successfully updated." }
+        format.html { redirect_to team_user_url(@team_user), notice: 'Team user was successfully updated.' }
         format.json { render :show, status: :ok, location: @team_user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class TeamUsersController < ApplicationController
     @team_user.destroy
 
     respond_to do |format|
-      format.html { redirect_to team_users_url, notice: "Team user was successfully destroyed." }
+      format.html { redirect_to team_users_url, notice: 'Team user was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_team_user
-      @team_user = TeamUser.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def team_user_params
-      params.require(:team_user).permit(:team_id, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_team_user
+    @team_user = TeamUser.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def team_user_params
+    params.require(:team_user).permit(:team_id, :user_id)
+  end
 end
