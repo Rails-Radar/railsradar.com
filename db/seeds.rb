@@ -105,5 +105,9 @@ end
 # Seed Blips
 
 InterestingThing.all.each do |thing|
-  Blip.create(interesting_thing: thing, team: community, stage: ['adopt', 'trial', 'assess', 'hold'].sample)
+  random_stage = %w[adopt trial assess hold].sample
+  BlipCreator.new(
+    interesting_thing: thing, 
+    team: community, 
+    stage: random_stage).call
 end
