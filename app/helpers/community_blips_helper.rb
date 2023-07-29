@@ -1,0 +1,2 @@
+module CommunityBlipsHelper
+end

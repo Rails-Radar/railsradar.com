@@ -1,0 +1,2 @@
+module TeamBlipsHelper
+end

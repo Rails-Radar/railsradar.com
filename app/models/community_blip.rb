@@ -1,0 +1,2 @@
+class CommunityBlip < ApplicationRecord
+end
