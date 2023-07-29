@@ -1,4 +1,7 @@
-<div>
-  <h1 class="font-bold text-4xl">Page#index</h1>
-  <p>Find me in app/views/page/index.html.erb</p>
-</div>
+<%= render(PanelComponent.new bg_color: "bg-blue-400") do %>
+  <div>
+    <h1 class="font-bold text-4xl">Page#index</h1>
+    <p>Find me in app/views/page/index.html.erb</p>
+  </div>
+  <%= link_to 'New team', new_team_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+<%end%>
