@@ -1,7 +1,13 @@
 {
   "recommendations": [
+    "rebornix.ruby",
+    "connorshea.vscode-ruby-test-adapter",
+    "misogi.ruby-rubocop",
+    "KoichiSasada.vscode-rdbg",
+    "wingrunr21.vscode-ruby",
     "aki77.rails-routes",
     "aliariff.vscode-erb-beautify",
-    "castwide.solargraph"
+    "castwide.solargraph",
+    "ms-vscode.makefile-tools"
   ]
 }
