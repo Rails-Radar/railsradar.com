@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <%= render NavbarComponent.new %>
+    <%= render NavbarComponent.new(current_user: current_user) %>
     <%= yield %>
   </body>
 </html>
