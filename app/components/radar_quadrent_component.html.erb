@@ -1,7 +1,7 @@
 <div class="h-[512px] w-[512px] bg-green-300">
   <svg width="512" height="512" xmlns="http://www.w3.org/2000/svg">
     <% @dots.each do |dot| %>
-      <circle cx="<%= dot[0] %>" cy="<%= dot[1] %>" r="<%= 35 / 2 %>" fill="black" >
+      <circle cx="<%= dot[0] %>" cy="<%= dot[1] %>" r="<%= @dot_radius %>" fill="black" >
       </circle>
     <% end %>
   </svg>

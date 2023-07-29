@@ -24,7 +24,7 @@ def render_dots_on_circle_quadrant(radius, min_distance, max_distance, num_dots,
                   when 4
                     270
                   else
-                    raise "Invalid quadrant. Should be 1, 2, 3, or 4."
+                    raise 'Invalid quadrant. Should be 1, 2, 3, or 4.'
                   end
 
     radius_adjusted = radius - (dot_size / 2.0)
@@ -41,7 +41,7 @@ def render_dots_on_circle_quadrant(radius, min_distance, max_distance, num_dots,
     end
   end
 
-  return dots
+  dots
 end
 
 # Example usage:
