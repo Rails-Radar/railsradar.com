@@ -86,17 +86,17 @@ platforms = [
 ]
 
 tools.each do |n|
-  InterestingThing.create(name: n, kind: InterestingThing.kind[:tool], team: community)
+  InterestingThing.create(name: n, kind: InterestingThing.kinds[:tool], team: community)
 end
 
 gems.each do |n|
-  InterestingThing.create(name: n, kind: InterestingThing.kind[:gem], team: community)
+  InterestingThing.create(name: n, kind: InterestingThing.kinds[:gem], team: community)
 end
 
 techniques.each do |n|
-  InterestingThing.create(name: n, kind: InterestingThing.kind[:technique], team: community)
+  InterestingThing.create(name: n, kind: InterestingThing.kinds[:technique], team: community)
 end
 
 platforms.each do |n|
-  InterestingThing.create(name: n, kind: InterestingThing.kind[:platform], team: community)
+  InterestingThing.create(name: n, kind: InterestingThing.kinds[:platform], team: community)
 end
