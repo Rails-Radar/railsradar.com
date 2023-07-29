@@ -1,0 +1,67 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table users {
+  id integer [primary key]
+  name string
+  followed_user_id integer
+  created_at timestamp 
+}
+
+Table teams {
+  id integer [primary key]
+  username varchar
+  role varchar
+  created_at timestamp
+}
+
+Table team_users {
+  id integer [primary key]
+  user_id integer [ref: > users.id]
+  team_id integer [ref: > teams.id]
+}
+
+Table team_blips {
+  id integer [primary key]
+  name string
+  description text
+  team_id integer [ref: > teams.id]
+  stage Stage
+  group Group
+  community_blip_id integer [ref: > community_blips.id]
+  created_at timestamp
+}
+
+Table community_blips {
+  id integer [primary key]
+  name string
+  description text
+  stage Stage
+  group Group
+  created_at timestamp
+}
+
+Table tags {
+  id integer [primary key]
+  name string
+  team_id integer [ref: > teams.id]
+}
+
+Table blip_tags {
+  blip_id integer [ref: > team_blips.id]
+  tag_id integer [ref: > tags.id]
+}
+
+enum Group {
+  Services
+  Patterns
+  Infrastructure
+  Tools
+}
+
+enum Stage {
+  Hold
+  Asses
+  Trial
+  Adopt
+}
