@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  resources :community_blips
-  resources :team_blips
+  resources :blips
+  resources :interesting_things
   resources :team_users
   resources :teams
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
