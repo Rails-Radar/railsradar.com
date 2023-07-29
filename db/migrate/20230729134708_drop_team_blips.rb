@@ -2,6 +2,6 @@
 
 class DropTeamBlips < ActiveRecord::Migration[7.0]
   def change
-    drop_table :team_blips
+    drop_table :team_blips, if_exists: true
   end
 end
