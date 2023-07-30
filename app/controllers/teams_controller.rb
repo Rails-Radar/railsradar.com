@@ -28,11 +28,10 @@ class TeamsController < ApplicationController
   end
 
   def show_team
-    @team = current_user.teams.first
-    if @team.nil?
-      # Dirtily create a team for this user
-      @team = Team.create!(name: "#{current_user.name}'s team", is_community: false)
-      TeamUser.create!(team: @team, user: current_user)
+    @team = current_user.teams.first_or_create do |team|
+      team.name = "#{current_user.name}'s team"
+      team.is_community = false
+      team.users << current_user
     end
 
     @team = authorize current_user.teams.first
