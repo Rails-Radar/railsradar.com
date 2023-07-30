@@ -50,7 +50,7 @@
               <% if item&.interesting_thing&.description&.present? %>
                 <p><%= item.interesting_thing.description %></p>
               <% end %>
-              <p>Last updated <b><%= time_ago_in_words item.created_at %></b></p>
+              <p>Last updated <b><%= time_ago_in_words item.updated_at %></b></p>
             </div>
           </details>
         <% end %>
@@ -128,7 +128,7 @@
               <% if item&.interesting_thing&.description&.present? %>
                 <p><%= item.interesting_thing.description %></p>
               <% end %>
-              <p>Last updated <b><%= time_ago_in_words item.created_at %></b></p>
+              <p>Last updated <b><%= time_ago_in_words item.updated_at %></b></p>
             </div>
           </details>
         <% end %>
