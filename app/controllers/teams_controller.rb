@@ -6,29 +6,29 @@ class TeamsController < ApplicationController
 
   # GET /teams or /teams.json
   def index
-    @teams = Team.all
+    @teams = policy_scope(Team)
   end
 
   # GET /teams/1 or /teams/1.json
   def show
     # You can only view your team or the communities
-    raise 'Not implemented'
+    # raise 'Not implemented'
   end
 
   def show_community
-    @team = Team.find_by(is_community: true)
+    @team = authorize Team.find_by(is_community: true)
     @kind = params[:kind].to_s.singularize
     # raise 'Not implemented' unless %w[tool technique gem platform].include?(@kind)
 
     @random_thing = InterestingThing.joins(:team).where(kind: @kind, teams: { is_community: true }).sample
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
     @activity = BlipActivity.where(team: @team).order(created_at: :desc).limit(10)
-    
+
     render :show
   end
 
   def show_team
-    @team = current_user.teams.first
+    @team = authorize current_user.teams.first
     @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).sample
     @kind = params[:kind].to_s.singularize
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
@@ -38,7 +38,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
-    @team = Team.new
+    @team = authorize Team.new(users: [current_user])
   end
 
   # GET /teams/1/edit
@@ -46,7 +46,7 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
-    @team = Team.new(team_params)
+    @team = Team.new(**team_params, users: [current_user])
 
     respond_to do |format|
       if @team.save
@@ -86,7 +86,7 @@ class TeamsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_team
-    @team = Team.find(params[:id])
+    @team = authorize Team.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

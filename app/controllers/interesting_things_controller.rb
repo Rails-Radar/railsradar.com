@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class InterestingThingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_interesting_thing, only: %i[show edit update destroy]
 
   # GET /interesting_things or /interesting_things.json
   def index
-    @interesting_things = InterestingThing.all
+    @interesting_things = policy_scope(InterestingThing)
   end
 
   # GET /interesting_things/1 or /interesting_things/1.json
