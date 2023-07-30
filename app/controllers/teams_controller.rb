@@ -11,7 +11,23 @@ class TeamsController < ApplicationController
 
   # GET /teams/1 or /teams/1.json
   def show
+    # You can only view your team or the communities
+    raise "Not implemented"
+  end
+
+  def show_community
+    # params.require(:ki).permit(:name)
+    @team = Team.find_by(is_community: true)
+    @kind = params[:kind]
     @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).sample
+    render :show
+  end
+
+  def show_team
+    @team = current_user.teams.first
+    @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).sample
+    @kind = params[:kind]
+    render :show
   end
 
   # GET /teams/new

@@ -7,12 +7,12 @@ class NavbarComponent < ViewComponent::Base
     @items = [
       {
         name: 'Community',
-        path: root_path,
+        path: '/community/tecnhiques',
         active: @path == root_path
       },
       {
-        name: 'Teams',
-        path: teams_path,
+        name: 'Team',
+        path: '/team/techniques',
         active: @path == teams_path
       },
       {

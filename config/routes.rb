@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   resources :interesting_things
   resources :team_users
   resources :teams
+  
+  get '/community', to: 'teams#show_community'
+  get '/team', to: 'teams#show_team'
+  get '/community/:kind', to: 'teams#show_community'
+  get '/team/:kind', to: 'teams#show_team'
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'omniauth_callbacks',
     sessions: 'users/sessions',
