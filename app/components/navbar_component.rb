@@ -19,6 +19,11 @@ class NavbarComponent < ViewComponent::Base
         name: 'Interesting Things',
         path: interesting_things_path,
         active: @path == interesting_things_path
+      },
+      {
+        name: 'About',
+        path: about_path,
+        active: @path == about_path
       }
     ]
   end

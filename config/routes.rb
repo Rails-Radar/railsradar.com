@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get '/community', to: 'teams#show_community'
   get '/team', to: 'teams#show_team', as: 'my_team'
+  get '/about', to: 'page#index'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'omniauth_callbacks',
