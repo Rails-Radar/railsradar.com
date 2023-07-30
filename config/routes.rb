@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   resources :blips
   resources :interesting_things
   resources :team_users
-  resources :teams
+  resources :teams do
+    member do
+      post :vote
+    end
+  end
 
   get '/community', to: 'teams#show_community'
   get '/team', to: 'teams#show_team', as: 'my_team'

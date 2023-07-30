@@ -28,7 +28,6 @@ class TeamsController < ApplicationController
   end
 
   def show_team
-
     @team = current_user.teams.first
     if @team.nil?
       # Dirtily create a team for this user
@@ -52,6 +51,10 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit; end
+
+  def vote
+    logger.debug vote_params
+  end
 
   # POST /teams or /teams.json
   def create
@@ -101,5 +104,9 @@ class TeamsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def team_params
     params.require(:team).permit(:name)
+  end
+
+  def vote_params
+    params.require(:vote).permit(:interesting_thing_id, :stage)
   end
 end

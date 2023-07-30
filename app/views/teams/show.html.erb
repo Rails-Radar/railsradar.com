@@ -12,31 +12,32 @@
       <%= link_to 'Tools', "/team/tools", class: "btn btn-secondary" %>
       <%= link_to 'Gems', "/team/gems", class: "btn btn-secondary" %>
       <%= link_to 'Platforms', "/team/platforms", class: "btn btn-secondary" %>
-  <% end %>
+    <% end %>
   <% end %>
 <% end %>
 <%= render PanelComponent.new bg_color: "bg-white" do %>
   <%= render Navigation::StageTabsComponent.new %>
-    <%= render BodyPanelComponent.new notice: notice do%>
-      <div class="flex">
-        <%= render RadarComponent.new(blips: @blips) %>
-        <%= @blips.count %>
-      </div>
-      <div class="pl-10">
-        <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
-          What's your take on the <b><%= @random_thing&.name&.singularize %></b> <%= @random_thing&.kind %> for Rails?
-        </h2>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <%= render BodyPanelComponent.new notice: notice do%>
+    <div class="flex">
+      <%= render RadarComponent.new(blips: @blips) %>
+      <%= @blips.count %>
+    </div>
+    <div class="pl-10">
+      <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
+        What's your take on the <b><%= @random_thing&.name&.singularize %></b> <%= @random_thing&.kind %> for Rails?
+      </h2>
+      <%= button_to "Assess", vote_team_path(@team), params: { vote: { interesting_thing_id: @random_thing.id, stage: :assess } }, method: :post  %>
+    </div>
+  </div>
+</div>
+<% end %>
 <% end %>
 <%= render PanelComponent.new bg_color: "hover: bg- bg-slate-50" do %>
   <% @blips.each_with_index do |item, index| %>
-    <div class="grid divide-y divide-neutral-200 max-w-xl  mt-4">
+    <div class="grid max-w-xl mt-4 divide-y divide-neutral-200">
       <div class="py-2">
         <details class="group">
-          <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+          <summary class="flex items-center justify-between font-medium list-none cursor-pointer">
             <span><%= index + 1 %>. <%= item.interesting_thing.name %></span>
             <span class="transition group-open:rotate-180">
               <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
@@ -44,7 +45,7 @@
               </svg>
             </span>
           </summary>
-          <p class="text-neutral-600 mt-3 group-open:animate-fadeIn"><%= item.interesting_thing.description || "No Description" %></p>
+          <p class="mt-3 text-neutral-600 group-open:animate-fadeIn"><%= item.interesting_thing.description || "No Description" %></p>
         </details>
       </div>
     </div>
