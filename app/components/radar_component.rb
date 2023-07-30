@@ -2,7 +2,6 @@
 
 class RadarComponent < ViewComponent::Base
   def initialize(blips:, quadrant:)
-
     @dot_radius = 3
     @image_size = 256
     @radar_center = radar_center_for(quadrant, @image_size)
@@ -20,40 +19,38 @@ class RadarComponent < ViewComponent::Base
     @dots += place_blips(trial, @stage_ranges[1], guide)
     @dots += place_blips(assess, @stage_ranges[2], guide)
     @dots += place_blips(hold, @stage_ranges[3], guide)
-
   end
-
 
   def get_guides(quadrant, image_size)
     case quadrant
     when :tl
       OpenStruct.new({
-        x_offset: image_size,
-        y_offset: image_size,
-        x_direction: -1,
-        y_direction: -1,
-      })
+                       x_offset: image_size,
+                       y_offset: image_size,
+                       x_direction: -1,
+                       y_direction: -1
+                     })
     when :tr
       OpenStruct.new({
-        x_offset: 0,
-        y_offset: image_size,
-        x_direction: 1,
-        y_direction: -1,
-      })
+                       x_offset: 0,
+                       y_offset: image_size,
+                       x_direction: 1,
+                       y_direction: -1
+                     })
     when :bl
       OpenStruct.new({
-        x_offset: image_size,
-        y_offset: 0,
-        x_direction: -1,
-        y_direction: 1,
-      })
+                       x_offset: image_size,
+                       y_offset: 0,
+                       x_direction: -1,
+                       y_direction: 1
+                     })
     when :br
       OpenStruct.new({
-        x_offset: 0,
-        y_offset: 0,
-        x_direction: 1,
-        y_direction: 1,
-      })
+                       x_offset: 0,
+                       y_offset: 0,
+                       x_direction: 1,
+                       y_direction: 1
+                     })
     else
       raise ArgumentError, "Not a valid quadrant #{quadrant}"
     end
@@ -62,13 +59,13 @@ class RadarComponent < ViewComponent::Base
   def get_borders(quadrant)
     case quadrant
     when :tl
-        "border-r border-b"
+      'border-r border-b'
     when :tr
-        "border-l border-b"
+      'border-l border-b'
     when :bl
-        "border-r border-t"
+      'border-r border-t'
     when :br
-        "border-l border-t"
+      'border-l border-t'
     else
       raise ArgumentError, "Not a valid quadrant #{quadrant}"
     end
@@ -79,22 +76,22 @@ class RadarComponent < ViewComponent::Base
     when :tl
       [
         image_size,
-        image_size,
+        image_size
       ]
     when :tr
       [
         0,
-        image_size,
+        image_size
       ]
     when :bl
       [
         image_size,
-        0,
+        0
       ]
     when :br
       [
         0,
-        0,
+        0
       ]
     else
       raise ArgumentError, "Not a valid quadrant #{quadrant}"
@@ -130,21 +127,22 @@ class RadarComponent < ViewComponent::Base
     @angles = 0.upto(blips.length - 1).map { |i| angle_step * (i + 1) }
     results = []
     polarity = 1
-    guide = 
+    guide =
 
-    blips.each_with_index do |blip, i|
-      angular_noise = blip.angular_noise * angular_deviation
-      a = @angles[i] + angular_noise
+      blips.each_with_index do |blip, i|
+        angular_noise = blip.angular_noise * angular_deviation
+        a = @angles[i] + angular_noise
 
       radial_noise = blip.radial_noise * radial_deviation
       r = middle + radial_noise
 
-      x = guide.x_offset + guide.x_direction * r * Math.cos(a)
-      y = guide.y_offset + guide.y_direction * r * Math.sin(a)
 
-      results << [x, y]
-      polarity *= -1
-    end
+        x = guide.x_offset + guide.x_direction * r * Math.cos(a)
+        y = guide.y_offset + guide.y_direction * r * Math.sin(a)
+
+        results << [x, y]
+        polarity *= -1
+      end
     results
   end
 end

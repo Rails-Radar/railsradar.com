@@ -1,7 +1,6 @@
 <%= render HeaderPanelComponent.new title: "#{@interesting_thing.name.titleize} / Edit" do%>
-  <%= render NavButtonComponent.new "Cancel", interesting_thing_path %>
+  <%= link_to 'Cancel', interesting_thing_path, class: 'btn btn-secondary' %>
 <% end %>
-
 <%= render BodyPanelComponent.new notice: notice do%>
   <%= render "form", interesting_thing: @interesting_thing %>
 <%end%>

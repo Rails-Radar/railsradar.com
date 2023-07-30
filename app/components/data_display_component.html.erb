@@ -1,0 +1,12 @@
+<div class="py-24 bg-white sm:py-32">
+  <div class="px-6 mx-auto max-w-7xl lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-base font-semibold leading-7 text-indigo-600">Check it out</h2>
+      <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl"><%= @title %></p>
+    </div>
+    <p class="max-w-2xl mx-auto mt-6 text-lg leading-8 text-center text-gray-600"><%= @subtitle %></p>
+    <div class="grid max-w-md grid-cols-1 mx-auto mt-16 isolate gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <%= render DataComponent.new title: "Technology", subtitle: "I don't know what I'm doing, im a smoothbrained junior dev.", datapoints: ["5 thousand data", "Up to 1000kbps", "initial commit"] %>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 <%= render HeaderPanelComponent.new title: "Interesting Things" do%>
-  <%= render NavButtonComponent.new "Add Something Interesting", new_interesting_thing_path %>
+  <%= link_to 'Add Something Interesting', new_interesting_thing_path, class: 'btn btn-secondary' %>
 <% end %>
-
 <%= render BodyPanelComponent.new notice: notice do%>
   <div id="interesting_things" class="min-w-full">
     <%= render @interesting_things %>
