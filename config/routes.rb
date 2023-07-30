@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :blip_activities
   resources :blips
   resources :interesting_things
   resources :team_users

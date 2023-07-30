@@ -1,12 +1,23 @@
 # frozen_string_literal: true
 
 # Seed Community
+BlipActivity.destroy_all
+Blip.destroy_all
+InterestingThing.destroy_all
+TeamUser.destroy_all
+Team.destroy_all
+User.destroy_all
+
 user = User.create!(
   email: 'admin@railsradar.com',
+  password: '1080897ed2aa4b127a70dca2904d36e11080897ed2aa4b127a70dca2904d36e1'
 )
+puts "Created Default User: #{user.email}"
 
 community = Team.create(name: 'Rails Community',
                         is_community: true)
+
+puts "Created Community: #{community.name}"
 
 tools = [
   'Github Copilot',
@@ -91,18 +102,22 @@ platforms = [
 
 tools.each do |n|
   InterestingThingCreator.new(name: n, kind: :tool, team: community).call
+  puts "Created Tool: #{n}"
 end
 
 gems.each do |n|
   InterestingThingCreator.new(name: n, kind: :gem, team: community).call
+  puts "Created Gem: #{n}"
 end
 
 techniques.each do |n|
   InterestingThingCreator.new(name: n, kind: :technique, team: community).call
+  puts "Created Technique: #{n}"
 end
 
 platforms.each do |n|
   InterestingThingCreator.new(name: n, kind: :infrastructure, team: community).call
+  puts "Created Platform: #{n}"
 end
 
 
@@ -115,4 +130,5 @@ InterestingThing.all.each do |thing|
     team: community,
     user: user,
     stage: random_stage).call
+    puts "Spotted: #{thing.name} in #{random_stage}"
 end

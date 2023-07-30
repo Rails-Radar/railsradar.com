@@ -9,9 +9,9 @@ class InterestingThingCreator
 
   def call
     it = InterestingThing.create!(
-      interesting_thing: @interesting_thing,
+      name: @name,
       team: @team,
-      stage: @stage,
+      kind: @kind,
       position: generate_position
     )
     {
@@ -19,6 +19,7 @@ class InterestingThingCreator
       data: it
     }
   rescue StandardError => e
+    raise e
     {
       success: false,
       errors: e

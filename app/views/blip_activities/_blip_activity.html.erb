@@ -1,0 +1,37 @@
+<div id="<%= dom_id blip_activity %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= blip_activity.user_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Team:</strong>
+    <%= blip_activity.team_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Blip:</strong>
+    <%= blip_activity.blip_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Stage:</strong>
+    <%= blip_activity.stage %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Event:</strong>
+    <%= blip_activity.event %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Comments:</strong>
+    <%= blip_activity.comments %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this blip activity", blip_activity, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this blip activity', edit_blip_activity_path(blip_activity), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

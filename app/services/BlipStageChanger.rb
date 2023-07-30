@@ -7,6 +7,7 @@ class BlipStageChanger
     @user = user
     @new_stage = stage
     @last_stage = blip.stage
+    @comments = comments
   end
 
   def call

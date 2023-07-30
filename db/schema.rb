@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_30_133101) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_30_153918) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blip_activities", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "team_id", null: false
-    t.string "blip_references"
+    t.bigint "blip_id", null: false
     t.integer "stage"
+    t.integer "event"
     t.text "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "event"
+    t.index ["blip_id"], name: "index_blip_activities_on_blip_id"
     t.index ["team_id"], name: "index_blip_activities_on_team_id"
     t.index ["user_id"], name: "index_blip_activities_on_user_id"
   end
@@ -46,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_133101) do
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "position"
     t.index ["team_id"], name: "index_interesting_things_on_team_id"
   end
 
@@ -83,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_133101) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "blip_activities", "blips"
   add_foreign_key "blip_activities", "teams"
   add_foreign_key "blip_activities", "users"
   add_foreign_key "blips", "interesting_things"
