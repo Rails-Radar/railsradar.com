@@ -7,14 +7,14 @@ class NavbarComponent < ViewComponent::Base
     @items = [
       {
         name: 'Community',
-        path: community_path,
-        active: @path == community_path
+        path: root_path,
+        active: @path == root_path
       },
-      # {
-      #   name: 'Team',
-      #   path: team_path,
-      #   active: @path == team_path
-      # },
+      {
+        name: 'Team',
+        path: my_team_path,
+        active: @path == my_team_path
+      },
       {
         name: 'Interesting Things',
         path: interesting_things_path,
