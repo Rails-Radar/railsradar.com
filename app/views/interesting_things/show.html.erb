@@ -1,11 +1,8 @@
 <%= render HeaderPanelComponent.new title: @interesting_thing.name.titleize do%>
-  <%= render NavButtonComponent.new "Edit", edit_interesting_thing_path %>
+  <%= link_to 'Edit', edit_interesting_thing_path, class: 'btn btn-secondary' %>
 <% end %>
-
 <%= render BodyPanelComponent.new notice: notice do%>
   <div class="mx-auto">
     <%= render @interesting_thing %>
   </div>
 <% end %>
-
-
