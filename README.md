@@ -1,24 +1,6 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Team https://railshackathon.com/teams/126 
+* Repo https://github.com/rails-hackathon/team-126
+* DB Diagrams https://dbdiagram.io/d/64c2ddeb02bd1c4a5ed2d0c3
+* Whimsical https://whimsical.com/railsradar-WCYPGCf5WWgzEni8Wvu9Lb

@@ -1,0 +1,12 @@
+<div style="width: <%=@image_size%> height="<%=@image_size%>" class="bg-gray-100">
+  <svg width="<%=@image_size%>" height="<%=@image_size%>" xmlns="http://www.w3.org/2000/svg">
+      <% @stage_ranges.reverse.each do |range| %>
+        <circle cx="<%=@radar_center.first%>" cy="<%=@radar_center.last%>" r="<%= range.last%>" fill="white" stroke="black" >
+        </circle>
+    <% end %>
+    <% @dots.each do |dot| %>
+      <circle cx="<%= dot[0] %>" cy="<%= dot[1] %>" r="<%= @dot_radius %>" fill="black" >
+      </circle>
+    <% end %>
+  </svg>
+</div>

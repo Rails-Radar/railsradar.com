@@ -1,8 +1,7 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing interesting thing</h1>
+<%= render HeaderPanelComponent.new title: "#{@interesting_thing.name.titleize} / Edit" do%>
+  <%= render NavButtonComponent.new "Cancel", interesting_thing_path %>
+<% end %>
 
+<%= render BodyPanelComponent.new notice: notice do%>
   <%= render "form", interesting_thing: @interesting_thing %>
-
-  <%= link_to "Show this interesting thing", @interesting_thing, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-  <%= link_to "Back to interesting things", interesting_things_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+<%end%>
