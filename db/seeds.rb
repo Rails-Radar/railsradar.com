@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 # Seed Community
+user = User.create!(
+  email: 'admin@railsradar.com',
+)
+
 community = Team.create(name: 'Rails Community',
                         is_community: true)
 
@@ -86,19 +90,19 @@ platforms = [
 ]
 
 tools.each do |n|
-  InterestingThing.create(name: n, kind: :tool, team: community)
+  InterestingThingCreator.new(name: n, kind: :tool, team: community).call
 end
 
 gems.each do |n|
-  InterestingThing.create(name: n, kind: :gem, team: community)
+  InterestingThingCreator.new(name: n, kind: :gem, team: community).call
 end
 
 techniques.each do |n|
-  InterestingThing.create(name: n, kind: :technique, team: community)
+  InterestingThingCreator.new(name: n, kind: :technique, team: community).call
 end
 
 platforms.each do |n|
-  InterestingThing.create(name: n, kind: :infrastructure, team: community)
+  InterestingThingCreator.new(name: n, kind: :infrastructure, team: community).call
 end
 
 
@@ -106,8 +110,9 @@ end
 
 InterestingThing.all.each do |thing|
   random_stage = %w[adopt trial assess hold].sample
-  BlipCreator.new(
+  VoteHandler.new(
     interesting_thing: thing, 
-    team: community, 
+    team: community,
+    user: user,
     stage: random_stage).call
 end
