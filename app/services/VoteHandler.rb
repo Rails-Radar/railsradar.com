@@ -26,7 +26,7 @@ class VoteHandler
 
     {
       success: false,
-      errors: e
+      error: e
     }
   end
 

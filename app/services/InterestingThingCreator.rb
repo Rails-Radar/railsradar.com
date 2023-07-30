@@ -21,7 +21,7 @@ class InterestingThingCreator
   rescue StandardError => e
     {
       success: false,
-      errors: e
+      error: e
     }
   end
 

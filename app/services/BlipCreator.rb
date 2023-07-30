@@ -36,7 +36,7 @@ class BlipCreator
   rescue StandardError => e
     {
       success: false,
-      errors: e
+      error: e
     }
   end
 
