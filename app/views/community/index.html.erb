@@ -1,4 +1,7 @@
-<div>
-  <h1 class="font-bold text-4xl">Community#index</h1>
-  <p>Find me in app/views/community/index.html.erb</p>
-</div>
+<%= render PanelComponent.new bg_color: "bg-slate-50" do %>
+  <%= render HeaderPanelComponent.new title: "Community #{@kind&.titleize}" do%>
+  <% end %>
+<% end %>
+<%= render PanelComponent.new bg_color: "bg-white" do %>
+  <%= render Navigation::CommunityTabsComponent.new %>
+<% end %>
