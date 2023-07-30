@@ -3,8 +3,8 @@
 class RadarComponent < ViewComponent::Base
   def initialize(blips:, quadrant:)
 
-    @dot_radius = 6
-    @image_size = 256
+    @dot_radius = 3
+    @image_size = 128
     @radar_center = radar_center_for(quadrant, @image_size)
     @stage_ranges = generate_ranges(@image_size)
 
