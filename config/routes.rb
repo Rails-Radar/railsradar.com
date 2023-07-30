@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
   resources :blip_activities
   resources :blips
   resources :interesting_things
@@ -27,7 +26,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'community#index'
 
-  namespace :community do
-    get :show
-  end
+  get 'community/:id', to: 'community#show', as: 'community_show'
 end
