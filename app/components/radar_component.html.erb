@@ -1,4 +1,4 @@
-<div style="width: <%=@image_size%> height="<%=@image_size%>" class="bg-gray-100">
+<div style="width: <%=@image_size%> height="<%=@image_size%>" class="bg-gray-100 <%=@borders%>">
   <svg width="<%=@image_size%>" height="<%=@image_size%>" xmlns="http://www.w3.org/2000/svg">
       <% @stage_ranges.reverse.each do |range| %>
         <circle cx="<%=@radar_center.first%>" cy="<%=@radar_center.last%>" r="<%= range.last%>" fill="white" stroke="black" >
