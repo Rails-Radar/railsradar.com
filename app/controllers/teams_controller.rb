@@ -24,15 +24,15 @@ class TeamsController < ApplicationController
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
     @activity = BlipActivity.where(team: @team).order(created_at: :desc).limit(10)
 
+    @title = "Community #{@kind.titleize}"
     render :show
   end
 
   def show_team
-    @team = current_user.teams.first
-    if @team.nil?
-      # Dirtily create a team for this user
-      @team = Team.create!(name: "#{current_user.name}'s team", is_community: false)
-      TeamUser.create!(team: @team, user: current_user)
+    @team = current_user.teams.first_or_create do |team|
+      team.name = "#{current_user.name}'s team"
+      team.is_community = false
+      team.users << current_user
     end
 
     @team = authorize current_user.teams.first
@@ -41,6 +41,7 @@ class TeamsController < ApplicationController
     @kind = params[:kind].to_s.singularize
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
 
+    @title = "#{@team.name} #{@kind.titleize}"
     render :show
   end
 

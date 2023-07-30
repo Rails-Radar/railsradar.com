@@ -3,6 +3,7 @@
 class InterestingThingsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_interesting_thing, only: %i[show edit update destroy]
+  before_action :set_team, only: %i[new create]
 
   # GET /interesting_things or /interesting_things.json
   def index
@@ -14,7 +15,7 @@ class InterestingThingsController < ApplicationController
 
   # GET /interesting_things/new
   def new
-    @interesting_thing = InterestingThing.new
+    @interesting_thing =  InterestingThing.new(team: @team)
   end
 
   # GET /interesting_things/1/edit
@@ -22,7 +23,7 @@ class InterestingThingsController < ApplicationController
 
   # POST /interesting_things or /interesting_things.json
   def create
-    @interesting_thing = InterestingThing.new(interesting_thing_params)
+    @interesting_thing =  InterestingThing.new(**interesting_thing_params, team: @team)
 
     respond_to do |format|
       if @interesting_thing.save
@@ -72,5 +73,9 @@ class InterestingThingsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def interesting_thing_params
     params.require(:interesting_thing).permit(:name, :description, :kind, :team_id)
+  end
+
+  def set_team
+    @team = current_user.teams.first
   end
 end

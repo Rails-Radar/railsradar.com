@@ -7,34 +7,38 @@ class Navigation::StageTabsComponent < ViewComponent::Base
     @items = [
       {
         name: 'All',
-        path: root_path,
-        active: @path == root_path
+        path: path_helper(request.original_fullpath),
+        active: @path == path_helper(request.original_fullpath)
       },
       {
         name: 'Techniques',
-        path: root_path(kind: 'technique'),
-        active: @path == root_path(kind: 'technique')
+        path: path_helper(request.original_fullpath, { kind: 'technique' }),
+        active: @path == path_helper(request.original_fullpath, { kind: 'technique' })
       },
       {
         name: 'Tools',
-        path: root_path(kind: 'tool'),
-        active: @path == root_path(kind: 'tool')
+        path: path_helper(request.original_fullpath, { kind: 'tool' }),
+        active: @path == path_helper(request.original_fullpath, { kind: 'tool' })
       },
       {
         name: 'Gems',
-        path: root_path(kind: 'gem'),
-        active: @path == root_path(kind: 'gem')
+        path: path_helper(request.original_fullpath, { kind: 'gem' }),
+        active: @path == path_helper(request.original_fullpath, { kind: 'gem' })
       },
       {
         name: 'Platforms',
-        path: root_path(kind: 'platform'),
-        active: @path == root_path(kind: 'platform')
+        path: path_helper(request.original_fullpath, { kind: 'platform' }),
+        active: @path == path_helper(request.original_fullpath, { kind: 'platform' })
       }
     ]
   end
 
-  def initialize(current_user: nil)
-    super
-    @current_user = current_user
+  def path_helper(path, options = {})
+    case path
+    when '/team'
+      my_team_path(options)
+    when '/'
+      root_path(options)
+    end
   end
 end
