@@ -1,6 +1,6 @@
 <%= render PanelComponent.new do %>
   <%= render HeroComponent.new title: "Build a Rails Radar for Your Team", background: nil,
-  subtitle: "Curious about the popular new tech? Take the risk out of accessing the pros and cons of the popular new changes in the Rails community.", cta: "Get Started" %>
+    subtitle: "Curious about the popular new tech? Take the risk out of accessing the pros and cons of the popular new changes in the Rails community.", cta: "Get Started" %>
 <% end %>
 <%= render PanelComponent.new bg_color: "bg-gray-200" do %>
   <%= render(CtaComponent.new(
@@ -12,4 +12,7 @@
     ],
     image_url: 'https://tailwindui.com/img/component-images/dark-project-app-screenshot.png'
   )) %>
+<% end %>
+<%= render PanelComponent.new bg_color: "bg-sky-50" do %>
+  <%= render DataDisplayComponent.new title: "See what's been on the community's mind", subtitle: "Our data collection reflects the general impression of what people are thinkng about different gems, techniques, and deployments.", data: nil %>
 <% end %>
