@@ -18,12 +18,11 @@ class VoteHandler
       existing_blip = get_last_blip(team: @team, interesting_thing: @interesting_thing)
       results = create_or_change(existing_blip, @user, @stage)
       raise results[:error] unless results[:success]
+      results
     end
-    {
-      success: true,
-      data: ba
-    }
   rescue StandardError => e
+    raise e
+
     {
       success: false,
       errors: e
@@ -31,6 +30,10 @@ class VoteHandler
   end
 
   private
+
+  def get_last_blip(team:, interesting_thing:)
+    Blip.where(team: team, interesting_thing: interesting_thing).order(:created_at).last
+  end
 
   def create_or_change(existing_blip, _user, _stage)
     if existing_blip
@@ -43,7 +46,8 @@ class VoteHandler
       @blip_creator = @blip_creator.new(
         team: @team,
         interesting_thing: @interesting_thing,
-        stage: @stage
+        stage: @stage,
+        user: @user
       ).call
     end
   end

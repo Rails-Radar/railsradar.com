@@ -19,7 +19,6 @@ class InterestingThingCreator
       data: it
     }
   rescue StandardError => e
-    raise e
     {
       success: false,
       errors: e

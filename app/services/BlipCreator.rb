@@ -1,25 +1,37 @@
 # frozen_string_literal: true
 
 class BlipCreator
-  def initialize(team:, interesting_thing:, stage:, blip_activity_creator: BlipActivityCreator)
+  def initialize(team:, interesting_thing:, stage:, user:)
     @team = team
     @interesting_thing = interesting_thing
     @stage = stage
-    @blip_activity_creator = blip_activity_creator
+    @user = user
   end
 
   def call
-    blip = Blip.create!(
-      interesting_thing: @interesting_thing,
-      team: @team,
-      stage: @stage,
-      radial_noise: generate_radial_noise,
-      angular_noise: generate_angular_noise
-    )
-    {
-      success: true,
-      data: blip
-    }
+    Blip.transaction do
+      blip = Blip.create!(
+        interesting_thing: @interesting_thing,
+        team: @team,
+        stage: @stage,
+        radial_noise: generate_radial_noise,
+        angular_noise: generate_angular_noise
+      )
+
+      blip_activity = BlipActivity.create!(
+        team: @team,
+        user: @user,
+        blip: blip,
+        stage: @stage,
+        event: :spotted)
+      {
+        success: true,
+        data: {
+          blip:,
+          blip_activity:
+        }
+      }
+    end
   rescue StandardError => e
     {
       success: false,
