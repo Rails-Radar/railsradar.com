@@ -12,23 +12,23 @@ class TeamsController < ApplicationController
   # GET /teams/1 or /teams/1.json
   def show
     # You can only view your team or the communities
-    raise "Not implemented"
+    raise 'Not implemented'
   end
 
   def show_community
     @team = Team.find_by(is_community: true)
     @kind = params[:kind].to_s.singularize
-    raise "Not implemented" unless %w[tool technique gem platform].include?(@kind)
+    # raise 'Not implemented' unless %w[tool technique gem platform].include?(@kind)
 
     @random_thing = InterestingThing.joins(:team).where(kind: @kind, teams: { is_community: true }).sample
-    @blips = @team.blips.joins(:interesting_thing).where(interesting_things: {kind: @kind})
+    @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
     render :show
   end
 
   def show_team
     @team = current_user.teams.first
     @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).sample
-    @kind = params[:kind]
+    @kind = params[:kind].to_s.singularize
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
 
     render :show

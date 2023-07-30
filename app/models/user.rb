@@ -18,4 +18,7 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
     end
   end
+
+  has_many :team_users
+  has_many :teams, through: :team_users
 end
