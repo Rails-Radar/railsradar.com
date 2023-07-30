@@ -10,7 +10,9 @@ class TeamsController < ApplicationController
   end
 
   # GET /teams/1 or /teams/1.json
-  def show; end
+  def show
+    @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).sample
+  end
 
   # GET /teams/new
   def new
