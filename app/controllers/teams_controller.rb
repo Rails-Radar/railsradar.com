@@ -29,6 +29,11 @@ class TeamsController < ApplicationController
 
   def show_team
     @team = current_user.teams.first
+    if @team.nil?
+      # Dirtily create a team for this user
+      @team = Team.create!(name: "#{current_user.name}'s team", is_community: false)
+      TeamUser.create!(team: @team, user: current_user)
+    end
     @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).sample
     @kind = params[:kind].to_s.singularize
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
