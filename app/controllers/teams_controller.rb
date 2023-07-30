@@ -16,10 +16,12 @@ class TeamsController < ApplicationController
   end
 
   def show_community
-    # params.require(:ki).permit(:name)
     @team = Team.find_by(is_community: true)
-    @kind = params[:kind]
-    @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).sample
+    @kind = params[:kind].to_s.singularize
+    raise "Not implemented" unless %w[tool technique gem platform].include?(@kind)
+
+    @random_thing = InterestingThing.joins(:team).where(kind: @kind, teams: { is_community: true }).sample
+    @blips = @team.blips.joins(:interesting_thing).where(interesting_things: {kind: @kind})
     render :show
   end
 
@@ -27,6 +29,8 @@ class TeamsController < ApplicationController
     @team = current_user.teams.first
     @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).sample
     @kind = params[:kind]
+    @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
+
     render :show
   end
 

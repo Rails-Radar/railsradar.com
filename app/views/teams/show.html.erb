@@ -18,7 +18,8 @@
 <%= render BodyPanelComponent.new notice: notice do%>
   
     <div class="flex">
-      <%= render FullRadarComponent.new(blips: @team.blips.joins(:interesting_thing)) %>
+      <%= render RadarComponent.new(blips: @blips) %>
+      <%=@blips.count%>
     </div>
 
     <div class="pl-10">
