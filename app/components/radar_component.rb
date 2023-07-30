@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class RadarComponent < ViewComponent::Base
-  def initialize(blips:, quadrant: :tr, image_size: 512)
+  def initialize(blips:, title: nil, quadrant: :tr, image_size: 512)
     @dot_radius = 20
     @image_size = image_size
+    @title = title
     @radar_center = radar_center_for(quadrant, @image_size)
     @borders = get_borders(quadrant)
     @stage_ranges = generate_ranges(@image_size)
@@ -19,6 +20,17 @@ class RadarComponent < ViewComponent::Base
     @dots += place_blips(trial, @stage_ranges[1], guide, @dot_radius)
     @dots += place_blips(assess, @stage_ranges[2], guide, @dot_radius)
     @dots += place_blips(hold, @stage_ranges[3], guide, @dot_radius)
+
+    case quadrant
+    when :tl
+      @title_display = 'top-4 left-4'
+    when :tr
+      @title_display = 'top-4 right-4'
+    when :bl
+      @title_display = 'bottom-4 left-4'
+    when :br
+      @title_display = 'bottom-4 right-4'
+    end
   end
 
   def get_guides(quadrant, image_size)
