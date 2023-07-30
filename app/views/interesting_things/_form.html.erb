@@ -23,12 +23,9 @@
 
   <div class="my-5">
     <%= form.label :kind %>
-    <%= form.number_field :kind, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :team_id %>
-    <%= form.text_field :team_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :kind, InterestingThing.kinds.keys.map{ |key| [key.humanize, key] }, 
+                            selected: @interesting_thing.kind || :assess,  class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" 
+    %>
   </div>
 
   <div class="inline">

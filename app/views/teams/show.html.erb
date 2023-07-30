@@ -2,6 +2,6 @@
   <%= render NavButtonComponent.new "Team Settings", edit_team_path %>
 <% end %>
 
-<%= render BodyPanelComponent.new notice: @notice do%>
+<%= render BodyPanelComponent.new notice: notice do%>
     <%= render FullRadarComponent.new(blips: @team.blips.joins(:interesting_thing)) %>
 <% end %>

@@ -2,6 +2,6 @@
   <%= render NavButtonComponent.new "Back", teams_path %>
 <% end %>
 
-<%= render BodyPanelComponent.new notice: @notice do%>
+<%= render BodyPanelComponent.new notice: notice do%>
     <%= render "form", team: @team %>
 <% end %>
