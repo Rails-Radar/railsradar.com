@@ -7,8 +7,7 @@
         <%= render RadarComponent.new(blips: @blips) %>
       </div>
     <%end%>
-
-    <div class="mt-10 p-10 border">
+    <div class="p-10 mt-10 border">
       <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
         What's your take on the <b><%= @random_thing&.name&.singularize %></b> <%= @random_thing&.kind %> for Rails?
       </h2>

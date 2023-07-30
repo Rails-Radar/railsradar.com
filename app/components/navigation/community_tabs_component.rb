@@ -22,13 +22,18 @@ class Navigation::CommunityTabsComponent < ViewComponent::Base
       },
       {
         name: 'Gems',
-        path:  root_path(kind: 'gem'),
-        active: @path ==  root_path(kind: 'gem')
+        path: root_path(kind: 'gem'),
+        active: @path == root_path(kind: 'gem')
       },
       {
         name: 'Platforms',
-        path:  root_path(kind: 'platform'),
-        active: @path ==  root_path(kind: 'platform')
+        path: root_path(kind: 'platform'),
+        active: @path == root_path(kind: 'platform')
+      },
+      {
+        name: 'Activity',
+        path: community_activity_path,
+        active: @path == community_activity_path
       }
     ]
   end

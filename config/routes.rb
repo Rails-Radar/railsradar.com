@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   root 'community#index'
 
   get 'community/:id', to: 'community#show', as: 'community_show'
+  get '/activity', to: 'community#activity', as: 'community_activity'
 end

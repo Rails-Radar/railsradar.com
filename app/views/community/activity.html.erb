@@ -1,0 +1,8 @@
+<%= render HeaderPanelComponent.new title: "Community Activity"%>
+<%= render PanelComponent.new bg_color: "bg-white" do %>
+  <div class="flex justify-center">
+    <ul role="list" class="-mb-8">
+      <%= render Activity::ListComponent.with_collection(@activity) %>
+    </ul>
+  </div>
+<%end%>

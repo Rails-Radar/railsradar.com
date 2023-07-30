@@ -11,6 +11,10 @@ class CommunityController < ApplicationController
 
   def show; end
 
+  def activity
+    @activity = BlipActivity.where(team: @team).order(created_at: :desc)
+  end
+
   private
 
   def set_team
