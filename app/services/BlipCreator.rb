@@ -42,6 +42,9 @@ class BlipCreator
 
   private
 
+  def next_blip_position
+  end
+
   def generate_radial_noise
     rand
   end
