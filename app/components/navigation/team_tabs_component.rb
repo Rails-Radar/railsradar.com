@@ -2,7 +2,7 @@
 
 class Navigation::TeamTabsComponent < ViewComponent::Base
   def before_render
-    @path = request.path
+    @path = request.original_fullpath
 
     @items = [
       {

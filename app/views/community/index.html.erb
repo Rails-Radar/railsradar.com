@@ -5,3 +5,21 @@
 <%= render PanelComponent.new bg_color: "bg-white" do %>
   <%= render Navigation::CommunityTabsComponent.new %>
 <% end %>
+<% if @kind.present? %>
+  <div class="container flex justify-center">
+    <div class="max-w-[512px]">
+      <%= render RadarComponent.new(blips: @blips) %>
+    </div>
+  </div>
+<% else %>
+  <div class="container flex justify-center">
+    <div class="grid grid-cols-2 gap-12 max-w-[1072px]">
+      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "technique" }), quadrant: :tl) %>
+      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "tool" })) %>
+      <div class="col-span-2">
+      </div>
+      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "gem" }), quadrant: :bl) %>
+      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "platform" }), quadrant: :br) %>
+    </div>
+  </div>
+<% end %>
