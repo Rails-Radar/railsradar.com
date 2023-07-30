@@ -7,28 +7,28 @@ class Navigation::StageTabsComponent < ViewComponent::Base
     @items = [
       {
         name: 'All',
-        path: community_path,
-        active: @path == community_path
+        path: root_path,
+        active: @path == root_path
       },
       {
         name: 'Techniques',
-        path: community_path(kind: 'technique'),
-        active: @path == community_path(kind: 'technique')
+        path: root_path(kind: 'technique'),
+        active: @path == root_path(kind: 'technique')
       },
       {
         name: 'Tools',
-        path: community_path(kind: 'tool'),
-        active: @path == community_path(kind: 'tool')
+        path: root_path(kind: 'tool'),
+        active: @path == root_path(kind: 'tool')
       },
       {
         name: 'Gems',
-        path: community_path(kind: 'gem'),
-        active: @path == community_path(kind: 'gem')
+        path: root_path(kind: 'gem'),
+        active: @path == root_path(kind: 'gem')
       },
       {
         name: 'Platforms',
-        path: community_path(kind: 'platform'),
-        active: @path == community_path(kind: 'platform')
+        path: root_path(kind: 'platform'),
+        active: @path == root_path(kind: 'platform')
       }
     ]
   end
