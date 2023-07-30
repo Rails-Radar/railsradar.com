@@ -6,6 +6,11 @@ class Navigation::StageTabsComponent < ViewComponent::Base
 
     @items = [
       {
+        name: 'All',
+        path: path_helper(request.original_fullpath),
+        active: @path == path_helper(request.original_fullpath)
+      },
+      {
         name: 'Techniques',
         path: path_helper(request.original_fullpath, { kind: 'technique' }),
         active: @path == path_helper(request.original_fullpath, { kind: 'technique' })
