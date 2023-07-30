@@ -15,11 +15,11 @@ class NavbarComponent < ViewComponent::Base
         path: my_team_path,
         active: @path == my_team_path
       },
-      {
-        name: 'Interesting Things',
-        path: interesting_things_path,
-        active: @path == interesting_things_path
-      },
+      # {
+      #   name: 'Interesting Things',
+      #   path: interesting_things_path,
+      #   active: @path == interesting_things_path
+      # },
       {
         name: 'About',
         path: about_path,
