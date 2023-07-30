@@ -6,11 +6,6 @@ class Navigation::TeamTabsComponent < ViewComponent::Base
 
     @items = [
       {
-        name: 'All',
-        path: my_team_path,
-        active: @path == my_team_path
-      },
-      {
         name: 'Techniques',
         path: my_team_path(kind: 'technique'),
         active: @path == my_team_path(kind: 'technique')
