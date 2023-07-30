@@ -3,13 +3,16 @@
 one:
   user: one
   team: one
-  blip_references: MyString
+  blip: one
   stage: 1
+  event: 1
   comments: MyText
 
 two:
   user: two
   team: two
-  blip_references: MyString
+  blip: two
   stage: 1
+  event: 1
+
   comments: MyText

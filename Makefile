@@ -16,7 +16,7 @@ update: # Update dependencies
 setup: # Setup the project
 	bundle install --redownload
 	gem install htmlbeautifier solargraph
-	bin/rails db:setup
+	bin/rails db:setup --trace
 
 reset: clean # Reset the project
 	bin/rails db:reset	
