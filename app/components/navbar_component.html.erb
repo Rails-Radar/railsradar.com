@@ -52,8 +52,6 @@
               </button>
             </div>
             <div data-dropdown-target="menu" class="absolute right-0 z-10 hidden w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
               <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-sm text-gray-700" %>
             </div>
           </div>
@@ -64,7 +62,7 @@
     </div>
   </div>
   <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="sm:hidden" id="mobile-menu">
+  <div class="hidden" id="mobile-menu">
     <div class="pt-2 pb-4 space-y-1">
       <!-- Current: "bg-red-50 border-red-500 text-red-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
       <a href="#" class="block py-2 pl-3 pr-4 text-base font-medium text-red-700 border-l-4 border-red-500 bg-red-50">Dashboard</a>
@@ -87,10 +85,10 @@
     </p>
     <a href="https://railshackathon.com/entries/66" class="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">Vote for Us!<span aria-hidden="true">&rarr;</span></a>
   </div>
-  <div class="flex flex-1 justify-end">
+  <div class="flex justify-end flex-1">
     <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
       <span class="sr-only">Dismiss</span>
-      <svg class="h-5 w-5 text-gray-900" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <svg class="w-5 h-5 text-gray-900" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
       </svg>
     </button>
