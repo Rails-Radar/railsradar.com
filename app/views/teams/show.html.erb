@@ -26,7 +26,7 @@
       <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
         What's your take on the <b><%= @random_thing&.name&.singularize %></b> <%= @random_thing&.kind %> for Rails?
       </h2>
-      <%= button_to "Assess", vote_team_path(@team), params: { vote: { interesting_thing_id: @random_thing.id, stage: :assess } }, method: :post  %>
+      <%= button_to "Assess", vote_team_path(@team), params: { vote: { interesting_thing_id: @random_thing&.id, stage: :assess } }, method: :post  %>
     </div>
   </div>
 </div>
