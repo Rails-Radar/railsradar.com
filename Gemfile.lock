@@ -134,6 +134,8 @@ GEM
     minitest (5.19.0)
     msgpack (1.7.2)
     multi_xml (0.6.0)
+    name_of_person (1.1.1)
+      activesupport (>= 5.2.0)
     net-imap (0.3.7)
       date
       net-protocol
@@ -320,6 +322,7 @@ DEPENDENCIES
   dockerfile-rails (>= 1.5)
   importmap-rails
   jbuilder
+  name_of_person (~> 1.1)
   omniauth (~> 2.1)
   omniauth-github (~> 2.0)
   omniauth-rails_csrf_protection (~> 1.0)
