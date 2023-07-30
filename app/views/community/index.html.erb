@@ -1,0 +1,7 @@
+<%= render PanelComponent.new bg_color: "bg-slate-50" do %>
+  <%= render HeaderPanelComponent.new title: "Community #{@kind&.titleize}" do%>
+  <% end %>
+<% end %>
+<%= render PanelComponent.new bg_color: "bg-white" do %>
+  <%= render Navigation::CommunityTabsComponent.new %>
+<% end %>

@@ -1,6 +1,6 @@
 <%= render HeaderPanelComponent.new title: @title%>
 <%= render PanelComponent.new bg_color: "bg-white" do %>
-  <%= render Navigation::StageTabsComponent.new %>
+  <%= render Navigation::TeamTabsComponent.new %>
   <%= render BodyPanelComponent.new notice: notice do%>
     <div class="flex">
       <%= render RadarComponent.new(blips: @blips) %>
