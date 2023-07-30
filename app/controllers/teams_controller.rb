@@ -22,6 +22,8 @@ class TeamsController < ApplicationController
 
     @random_thing = InterestingThing.joins(:team).where(kind: @kind, teams: { is_community: true }).sample
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
+    @activity = BlipActivity.where(team: @team).order(created_at: :desc).limit(10)
+    
     render :show
   end
 
