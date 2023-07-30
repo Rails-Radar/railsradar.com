@@ -19,6 +19,10 @@ class TeamPolicy < ApplicationPolicy
     team_user?
   end
 
+  def vote?
+    team_user?
+  end
+
   def update?
     team_user?
   end

@@ -2,7 +2,7 @@
 
 class TeamsController < ApplicationController
   before_action :authenticate_user!, except: %i[show_community]
-  before_action :set_team, only: %i[show edit update destroy]
+  before_action :set_team, only: %i[show edit update destroy vote]
 
   # GET /teams or /teams.json
   def index
@@ -37,8 +37,8 @@ class TeamsController < ApplicationController
 
     @team = authorize current_user.teams.first
 
-    @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).sample
     @kind = params[:kind].to_s.singularize
+    @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).where(kind: @kind).sample
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
 
     @title = "#{@team.name} #{@kind.titleize}"
@@ -54,7 +54,14 @@ class TeamsController < ApplicationController
   def edit; end
 
   def vote
-    logger.debug vote_params
+    @interesting_thing = InterestingThing.find(vote_params[:interesting_thing_id])
+    @result = VoteHandler.new(user: current_user, team: @team, interesting_thing: @interesting_thing, stage: vote_params[:stage]).call
+
+    if @result[:success]
+      redirect_to action: :show_team, params: { kind: @interesting_thing.kind }
+    else
+      redirect_to action: :show_team, params: { kind: @interesting_thing.kind }, notice: @result[:error]
+    end
   end
 
   # POST /teams or /teams.json
