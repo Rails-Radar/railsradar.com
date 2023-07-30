@@ -9,14 +9,8 @@ Team.destroy_all
 User.destroy_all
 
 user = User.create!(
-  name: 'Community Seeder',
+  name: 'Community Seeds',
   email: 'admin@railsradar.com',
-  password: '1080897ed2aa4b127a70dca2904d36e11080897ed2aa4b127a70dca2904d36e1'
-)
-
-user = User.create!(
-  name: 'Anonymous',
-  email: 'anonymous@railsradar.com',
   password: '1080897ed2aa4b127a70dca2904d36e11080897ed2aa4b127a70dca2904d36e1'
 )
 
