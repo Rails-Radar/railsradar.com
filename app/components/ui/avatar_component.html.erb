@@ -1,0 +1,7 @@
+<% if @user.image %>
+  <img class="flex items-center justify-center w-10 h-10 bg-gray-400 rounded-full ring-8 ring-white" src="<%= @user.image %>" alt="">
+<% else %>
+  <span class="inline-flex items-center justify-center w-10 h-10 bg-red-500 rounded-full">
+    <span class="font-medium leading-none text-white"><%= @user.name.initials %></span>
+  </span>
+<% end %>
