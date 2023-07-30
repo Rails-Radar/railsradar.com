@@ -9,13 +9,16 @@ class BlipCreator
   end
 
   def call
+    puts "Calling Blip Creator"
     Blip.transaction do
+      p = next_blip_position(team: @team)
       blip = Blip.create!(
         interesting_thing: @interesting_thing,
         team: @team,
         stage: @stage,
         radial_noise: generate_radial_noise,
-        angular_noise: generate_angular_noise
+        angular_noise: generate_angular_noise,
+        position: p
       )
 
       blip_activity = BlipActivity.create!(
@@ -34,6 +37,7 @@ class BlipCreator
       }
     end
   rescue StandardError => e
+    raise e
     {
       success: false,
       error: e
@@ -42,11 +46,16 @@ class BlipCreator
 
   private
 
+  def next_blip_position(team:)
+    last_position = team.blips.maximum(:position)
+    (last_position || 0) + 1
+  end
+
   def generate_radial_noise
-    rand
+    1.6 * rand - 0.8
   end
 
   def generate_angular_noise
-    rand - 0.5
+    rand
   end
 end

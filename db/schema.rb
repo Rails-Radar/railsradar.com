@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_210457) do
     t.datetime "updated_at", null: false
     t.float "radial_noise"
     t.float "angular_noise"
+    t.integer "position"
     t.index ["interesting_thing_id"], name: "index_blips_on_interesting_thing_id"
     t.index ["team_id"], name: "index_blips_on_team_id"
   end
