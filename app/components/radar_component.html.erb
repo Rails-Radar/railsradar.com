@@ -4,9 +4,12 @@
       <circle cx="<%=@radar_center.first%>" cy="<%=@radar_center.last%>" r="<%= range.last%>" fill="white" stroke="black" >
       </circle>
     <% end %>
-    <% @dots.each do |dot| %>
-      <circle cx="<%= dot[0] %>" cy="<%= dot[1] %>" r="<%= @dot_radius %>" fill="black" >
-      </circle>
+    <% @dots.each_with_index do |dot, index| %>
+      <g transform="translate(<%= dot[0] %>, <%= dot[1] %>)" width="30" height="30" viewBox="0 0 30 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5 35C27.165 35 35 27.165 35 17.5C35 7.83502 27.165 0 17.5 0C7.83502 0 0 7.83502 0 17.5C0 27.165 7.83502 35 17.5 35ZM17.6496 33.8034C26.7363 33.8034 34.1026 26.4372 34.1026 17.3504C34.1026 8.26369 26.7363 0.897436 17.6496 0.897436C8.56284 0.897436 1.19658 8.26369 1.19658 17.3504C1.19658 26.4372 8.56284 33.8034 17.6496 33.8034Z" fill="#EF4444"/>
+        <circle cx="17.6496" cy="17.3504" r="15.5556" fill="#EF4444"/>
+        <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Inter" font-size="17.9487" letter-spacing="0em"><tspan x="9.2735" y="24.108"><%= index + 1 %></tspan></text>
+      </g>
     <% end %>
   </svg>
 </div>

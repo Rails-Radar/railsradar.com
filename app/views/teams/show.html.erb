@@ -17,7 +17,7 @@
 <%= render BodyPanelComponent.new notice: notice do%>
   <div class="flex">
     <%= render RadarComponent.new(blips: @blips) %>
-    <%=@blips.count%>
+    <%= @blips.count %>
   </div>
   <div class="pl-10">
     <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
@@ -33,6 +33,12 @@
       </div>
     </div>
   </div>
+<% end %>
+<% @blips.each_with_index do |item, index| %>
+  <details>
+    <summary><%= index + 1 %> <%= item.interesting_thing.name %></summary>
+    <p><%= item.interesting_thing.description || "No Description" %></p>
+  </details>
 <% end %>
 <%= render PanelComponent.new do%>
   <div class="flow-root">

@@ -2,8 +2,8 @@
 
 class RadarComponent < ViewComponent::Base
   def initialize(blips:, quadrant: :tr)
-    @dot_radius = 3
-    @image_size = 256
+    @dot_radius = 20
+    @image_size = 512
     @radar_center = radar_center_for(quadrant, @image_size)
     @borders = get_borders(quadrant)
     @stage_ranges = generate_ranges(@image_size)
@@ -24,33 +24,41 @@ class RadarComponent < ViewComponent::Base
   def get_guides(quadrant, image_size)
     case quadrant
     when :tl
-      OpenStruct.new({
-                       x_offset: image_size,
-                       y_offset: image_size,
-                       x_direction: -1,
-                       y_direction: -1
-                     })
+      OpenStruct.new(
+        {
+          x_offset: image_size,
+          y_offset: image_size,
+          x_direction: -1,
+          y_direction: -1
+        }
+      )
     when :tr
-      OpenStruct.new({
-                       x_offset: 0,
-                       y_offset: image_size,
-                       x_direction: 1,
-                       y_direction: -1
-                     })
+      OpenStruct.new(
+        {
+          x_offset: 0,
+          y_offset: image_size,
+          x_direction: 1,
+          y_direction: -1
+        }
+      )
     when :bl
-      OpenStruct.new({
-                       x_offset: image_size,
-                       y_offset: 0,
-                       x_direction: -1,
-                       y_direction: 1
-                     })
+      OpenStruct.new(
+        {
+          x_offset: image_size,
+          y_offset: 0,
+          x_direction: -1,
+          y_direction: 1
+        }
+      )
     when :br
-      OpenStruct.new({
-                       x_offset: 0,
-                       y_offset: 0,
-                       x_direction: 1,
-                       y_direction: 1
-                     })
+      OpenStruct.new(
+        {
+          x_offset: 0,
+          y_offset: 0,
+          x_direction: 1,
+          y_direction: 1
+        }
+      )
     else
       raise ArgumentError, "Not a valid quadrant #{quadrant}"
     end
