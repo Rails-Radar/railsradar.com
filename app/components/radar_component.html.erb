@@ -1,4 +1,7 @@
-<div style="width: <%=@image_size%> height="<%=@image_size%>" class="bg-gray-50 rounded overflow-hidden <%=@borders%>">
+<div style="width: <%=@image_size%> height="<%=@image_size%>" class="bg-gray-50 rounded overflow-hidden relative <%=@borders%>">
+  <% if @title.present? %>
+    <h2 class="absolute text-2xl font-bold <%= @title_display %>"><%= @title %></h2>
+  <% end %>
   <svg width="<%=@image_size%>" height="<%=@image_size%>" xmlns="http://www.w3.org/2000/svg">
     <% @stage_ranges.reverse.each do |range| %>
       <circle cx="<%=@radar_center.first%>" cy="<%=@radar_center.last%>" r="<%= range.last%>" fill="white" stroke="#e5e7eb" >

@@ -52,8 +52,8 @@
 <% else %>
   <div class="container flex justify-center">
     <div class="grid grid-cols-2 gap-x-12 gap-y-4 max-w-[1072px]">
-      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "technique" }), quadrant: :tl) %>
-      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "tool" })) %>
+      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "technique" }), title: "Techniques", quadrant: :tl) %>
+      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "tool" }), title: "Tools") %>
       <div class="grid justify-center w-full grid-cols-6 font-bold">
         <div class="text-center">
           <p>
@@ -98,8 +98,8 @@
           </p>
         </div>
       </div>
-      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "gem" }), quadrant: :bl) %>
-      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "platform" }), quadrant: :br) %>
+      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "gem" }), title: "Gems", quadrant: :bl) %>
+      <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "platform" }), title: "Platforms", quadrant: :br) %>
     </div>
   </div>
 <% end %>
