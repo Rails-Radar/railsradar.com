@@ -1,18 +1,125 @@
-<%= render PanelComponent.new do %>
-  <%= render HeroComponent.new title: "Build a Rails Radar for Your Team", background: nil,
-    subtitle: "Curious about the popular new tech? Take the risk out of accessing the pros and cons of the popular new changes in the Rails community.", cta: "Get Started" %>
-<% end %>
-<%= render PanelComponent.new bg_color: "bg-gray-200" do %>
-  <%= render(CtaComponent.new(
-    title: 'What is your take on service objects?'.html_safe,
-    subtitle: '',
-    buttons: [
-      ButtonComponent.new(variant: 'default', text: 'Get started'),
-      ButtonComponent.new(text: 'Get Started', variant: 'secondary', theme: 'dark', arrow: true, link: '#')
-    ],
-    image_url: 'https://tailwindui.com/img/component-images/dark-project-app-screenshot.png'
-  )) %>
-<% end %>
-<%= render PanelComponent.new bg_color: "bg-sky-50" do %>
-  <%= render DataDisplayComponent.new title: "See what's been on the community's mind", subtitle: "Our data collection reflects the general impression of what people are thinkng about different gems, techniques, and deployments.", data: nil %>
+<%= render PanelComponent.new bg_color: "bg-gray-900" do %>
+<div class="bg-gray-900">
+   <!-- Header -->
+   <main class="relative isolate">
+      <!-- Background -->
+      <div class="absolute inset-x-0 top-4 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl" aria-hidden="true">
+         <div class="aspect-[1108/632] w-[69.25rem] flex-none bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-25" style="clip-path: polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)"></div>
+      </div>
+      <!-- Header section -->
+      <div class="px-6 pt-14 lg:px-8">
+         <div class="mx-auto max-w-2xl pt-24 text-center sm:pt-40">
+            <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Thank you</h2>
+            <p class="mt-6 text-lg leading-8 text-gray-300">This year's hackathon brought a group of three strangers together and this wouldn't have happened otherwise without this community.</p>
+         </div>
+      </div>
+      <!-- Content section -->
+      <div class="mx-auto mt-20 max-w-7xl px-6 lg:px-8">
+         <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+            <dl class="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mt-28 lg:grid-cols-4">
+               <div class="flex flex-col-reverse gap-y-3 border-l border-white/20 pl-6">
+                  <dt class="text-base leading-7 text-gray-300">Teams joined</dt>
+                  <dd class="text-3xl font-semibold tracking-tight text-white"><%= Team.all.count %></dd>
+               </div>
+               <div class="flex flex-col-reverse gap-y-3 border-l border-white/20 pl-6">
+                  <dt class="text-base leading-7 text-gray-300">Users</dt>
+                  <dd class="text-3xl font-semibold tracking-tight text-white"><%= User.all.count %></dd>
+               </div>
+               <div class="flex flex-col-reverse gap-y-3 border-l border-white/20 pl-6">
+                  <dt class="text-base leading-7 text-gray-300">Interesting Things</dt>
+                  <dd class="text-3xl font-semibold tracking-tight text-white"><%= InterestingThing.all.count %></dd>
+               </div>
+               <div class="flex flex-col-reverse gap-y-3 border-l border-white/20 pl-6">
+                  <dt class="text-base leading-7 text-gray-300">Number of amazing mascots</dt>
+                  <dd class="text-3xl font-semibold tracking-tight text-white">1 tiny dinosaur</dd>
+               </div>
+            </dl>
+         </div>
+      </div>
+      <!-- Image section -->
+      <div class="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
+         <%= image_tag "keep_building.png", class: "rounded-lg"%>
+      </div>
+      <!-- Values section -->
+      <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+         <div class="mx-auto max-w-2xl lg:mx-0">
+            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Goals</h2>
+            <p class="mt-6 text-lg leading-8 text-gray-300">With the amount that is changing in the industry, we wanted something to reflect the thoughts of the Rails community.</p>
+         </div>
+         <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:gap-x-16">
+            <div class="relative pl-9">
+               <dt class="inline font-semibold text-white">
+                  <svg class="absolute left-1 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                     <path fill-rule="evenodd" d="M4.606 12.97a.75.75 0 01-.134 1.051 2.494 2.494 0 00-.93 2.437 2.494 2.494 0 002.437-.93.75.75 0 111.186.918 3.995 3.995 0 01-4.482 1.332.75.75 0 01-.461-.461 3.994 3.994 0 011.332-4.482.75.75 0 011.052.134z" clip-rule="evenodd" />
+                     <path fill-rule="evenodd" d="M5.752 12A13.07 13.07 0 008 14.248v4.002c0 .414.336.75.75.75a5 5 0 004.797-6.414 12.984 12.984 0 005.45-10.848.75.75 0 00-.735-.735 12.984 12.984 0 00-10.849 5.45A5 5 0 001 11.25c.001.414.337.75.751.75h4.002zM13 9a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                  </svg>
+                  Organize complexity .
+               </dt>
+               <dd class="inline">Our application should take on the wild variety of options a team could consider.</dd>
+            </div>
+            <div class="relative pl-9">
+               <dt class="inline font-semibold text-white">
+                  <svg class="absolute left-1 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                     <path fill-rule="evenodd" d="M11 2a1 1 0 10-2 0v6.5a.5.5 0 01-1 0V3a1 1 0 10-2 0v5.5a.5.5 0 01-1 0V5a1 1 0 10-2 0v7a7 7 0 1014 0V8a1 1 0 10-2 0v3.5a.5.5 0 01-1 0V3a1 1 0 10-2 0v5.5a.5.5 0 01-1 0V2z" clip-rule="evenodd" />
+                  </svg>
+                  Reduce confusion.
+               </dt>
+               <dd class="inline">Our radar conceptualization will hopefully simplify the different levels of consideration for a new 'interesting thing'.</dd>
+            </div>
+            <div class="relative pl-9">
+               <dt class="inline font-semibold text-white">
+                  <svg class="absolute left-1 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                     <path d="M10 9a3 3 0 100-6 3 3 0 000 6zM6 8a2 2 0 11-4 0 2 2 0 014 0zM1.49 15.326a.78.78 0 01-.358-.442 3 3 0 014.308-3.516 6.484 6.484 0 00-1.905 3.959c-.023.222-.014.442.025.654a4.97 4.97 0 01-2.07-.655zM16.44 15.98a4.97 4.97 0 002.07-.654.78.78 0 00.357-.442 3 3 0 00-4.308-3.517 6.484 6.484 0 011.907 3.96 2.32 2.32 0 01-.026.654zM18 8a2 2 0 11-4 0 2 2 0 014 0zM5.304 16.19a.844.844 0 01-.277-.71 5 5 0 019.947 0 .843.843 0 01-.277.71A6.975 6.975 0 0110 18a6.974 6.974 0 01-4.696-1.81z" />
+                  </svg>
+                  Support creators.
+               </dt>
+               <dd class="inline">This product isn't just about sorting out what you don't want, but being open to things you wouldn't have considered otherwise, especially new gems from new creators.</dd>
+            </div>
+            <div class="relative pl-9">
+               <dt class="inline font-semibold text-white">
+                  <svg class="absolute left-1 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                     <path fill-rule="evenodd" d="M9.664 1.319a.75.75 0 01.672 0 41.059 41.059 0 018.198 5.424.75.75 0 01-.254 1.285 31.372 31.372 0 00-7.86 3.83.75.75 0 01-.84 0 31.508 31.508 0 00-2.08-1.287V9.394c0-.244.116-.463.302-.592a35.504 35.504 0 013.305-2.033.75.75 0 00-.714-1.319 37 37 0 00-3.446 2.12A2.216 2.216 0 006 9.393v.38a31.293 31.293 0 00-4.28-1.746.75.75 0 01-.254-1.285 41.059 41.059 0 018.198-5.424zM6 11.459a29.848 29.848 0 00-2.455-1.158 41.029 41.029 0 00-.39 3.114.75.75 0 00.419.74c.528.256 1.046.53 1.554.82-.21.324-.455.63-.739.914a.75.75 0 101.06 1.06c.37-.369.69-.77.96-1.193a26.61 26.61 0 013.095 2.348.75.75 0 00.992 0 26.547 26.547 0 015.93-3.95.75.75 0 00.42-.739 41.053 41.053 0 00-.39-3.114 29.925 29.925 0 00-5.199 2.801 2.25 2.25 0 01-2.514 0c-.41-.275-.826-.541-1.25-.797a6.985 6.985 0 01-1.084 3.45 26.503 26.503 0 00-1.281-.78A5.487 5.487 0 006 12v-.54z" clip-rule="evenodd" />
+                  </svg>
+                  Always learning.
+               </dt>
+               <dd class="inline">Discover new things that you wouldn't have come across!</dd>
+            </div>
+         </dl>
+      </div>
+      <!-- Team section -->
+      <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+         <div class="mx-auto max-w-2xl lg:mx-0">
+            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Our hackathon team</h2>
+            <p class="mt-6 text-lg leading-8 text-gray-300">From surviving flooded banks to being Mr. Github, our team was filled with wonderfull interesting people.</p>
+         </div>
+         <ul role="list" class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4">
+            <li>
+               <%= image_tag "helpotters.png", class: "aspect-[14/13] w-full rounded-2xl object-cover" %>
+               <h3 class="mt-6 text-lg font-semibold leading-8 tracking-tight text-white">@helpotters</h3>
+               <p class="text-base leading-7 text-gray-300">Paul Lemus</p>
+               <p class="text-sm leading-6 text-gray-500">California, USA</p>
+            </li>
+            <li>
+               <%= image_tag "maks.png", class: "aspect-[14/13] w-full rounded-2xl object-cover" %>
+               <h3 class="mt-6 text-lg font-semibold leading-8 tracking-tight text-white">@maks112v</h3>
+               <p class="text-base leading-7 text-gray-300">Maks</p>
+               <p class="text-sm leading-6 text-gray-500">California, USA</p>
+            </li>
+            <li>
+               <%= image_tag "jeff.jpg", class: "aspect-[14/13] w-full rounded-2xl object-cover" %>
+               <h3 class="mt-6 text-lg font-semibold leading-8 tracking-tight text-white">@jrhicks</h3>
+               <p class="text-base leading-7 text-gray-300">Jeffery Hicks</p>
+               <p class="text-sm leading-6 text-gray-500">California, USA</p>
+            </li>
+            <li>
+               <%= image_tag "hackasaur.png", class: "aspect-[14/13] w-full rounded-2xl object-cover" %>
+               <h3 class="mt-6 text-lg font-semibold leading-8 tracking-tight text-white">Hackasaur</h3>
+               <p class="text-base leading-7 text-gray-300">Our Mascot</p>
+               <p class="text-sm leading-6 text-gray-500"></p>
+            </li>
+            <!-- More people... -->
+         </ul>
+      </div>
+   </main>
+</div>
 <% end %>
