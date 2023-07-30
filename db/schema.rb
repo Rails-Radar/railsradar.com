@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_204444) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_30_061605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blip_activities", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.string "blip_references"
+    t.integer "stage"
+    t.text "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_blip_activities_on_team_id"
+    t.index ["user_id"], name: "index_blip_activities_on_user_id"
+  end
 
   create_table "blips", force: :cascade do |t|
     t.bigint "interesting_thing_id", null: false
@@ -70,6 +82,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_204444) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "blip_activities", "teams"
+  add_foreign_key "blip_activities", "users"
   add_foreign_key "blips", "interesting_things"
   add_foreign_key "blips", "teams"
   add_foreign_key "interesting_things", "teams"
