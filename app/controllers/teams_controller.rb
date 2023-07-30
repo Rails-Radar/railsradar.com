@@ -34,20 +34,21 @@ class TeamsController < ApplicationController
       team.is_community = false
       team.users << current_user
     end
-    
+
     @kind = params[:kind].to_s.singularize
-    @kind = "technique" if @kind.blank?
-    
+    @kind = 'technique' if @kind.blank?
+
     existing_things = @team.blips.pluck(:interesting_thing_id)
     all_things = InterestingThing.joins(:team).where(teams: { is_community: true }).where(kind: @kind).pluck(:id)
     new_things = all_things - existing_things
-    if new_things.any?
-      @random_thing = InterestingThing.find(new_things.sample)
-    else
-      @random_thing = InterestingThing.find(all_things.sample)
-    end
+    @random_thing = if new_things.any?
+                      InterestingThing.find(new_things.sample)
+                    else
+                      InterestingThing.find(all_things.sample)
+                    end
 
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
+    @activity = BlipActivity.where(team: @team).order(created_at: :desc).limit(10)
 
     @title = "#{@team.name} #{@kind.titleize}"
     render :show

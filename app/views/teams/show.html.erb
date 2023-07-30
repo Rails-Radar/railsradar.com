@@ -2,12 +2,7 @@
 <%= render PanelComponent.new bg_color: "bg-white" do %>
   <%= render Navigation::TeamTabsComponent.new %>
   <%= render BodyPanelComponent.new notice: notice do%>
-    <% if @blips.length > 0%>
-      <div class="flex">
-        <%= render RadarComponent.new(blips: @blips) %>
-      </div>
-    <%end%>
-    <div class="p-10 mt-10 border">
+    <div class="p-10 border">
       <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
         What's your take on the <b><%= @random_thing&.name&.singularize %></b> <%= @random_thing&.kind %> for Rails?
       </h2>
@@ -39,27 +34,142 @@
 </div>
 <% end %>
 <% end %>
-<%= render PanelComponent.new bg_color: "hover: bg- bg-slate-50" do %>
-  <% @blips.each_with_index do |item, index| %>
-    <div class="grid max-w-xl mt-4 divide-y divide-neutral-200">
-      <div class="py-2">
-        <details class="group">
-          <summary class="flex items-center justify-between font-medium list-none cursor-pointer">
-            <span><%= index + 1 %>. <%= item.interesting_thing.name %></span>
-            <span class="transition group-open:rotate-180">
-              <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                <path d="M6 9l6 6 6-6"></path>
-              </svg>
-            </span>
-          </summary>
-          <p class="mt-3 text-neutral-600 group-open:animate-fadeIn"><%= item.interesting_thing.description || "No Description" %></p>
-        </details>
+<% if @kind.present? %>
+  <div class="container flex gap-12">
+    <div class="max-w-[768px] ">
+      <div class="sticky top-20">
+        <div>
+          <%= render RadarComponent.new(blips: @blips, image_size: 768, quadrant: :tl, title: @kind&.pluralize&.titleize) %>
+        </div>
+        <div class="grid justify-center w-full grid-cols-6 my-2 font-bold">
+          <div class="text-center">
+            <p>
+              Hold
+            </p>
+          </div>
+          <div class="text-center">
+            <p>
+              Assess
+            </p>
+          </div>
+          <div class="col-span-2 text-center">
+            <p>
+              Trial
+            </p>
+          </div>
+          <div class="col-span-2 text-center">
+            <p>
+              Adopt
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  <% end %>
+    <div class="flex-1 max-w-xl" id="summaries">
+      <div class="grid max-w-xl gap-4 mt-4">
+        <% @blips.each_with_index do |item, index| %>
+          <details id="<%= item.position %>" class="px-2 py-3 group open:bg-red-50">
+            <summary class="flex items-center justify-between font-medium list-none cursor-pointer group:open:text-red-500">
+              <span class=""><%= item.position %>. <%= item.interesting_thing.name %></span>
+              <span class="transition group-open:rotate-180">
+                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="mt-3 prose group-open:animate-fadeIn">
+              <h5>Status: <b><%= item.stage.titleize %></b></h5>
+              <% if item&.interesting_thing&.description&.present? %>
+                <p><%= item.interesting_thing.description %></p>
+              <% end %>
+              <p>Last updated <b><%= time_ago_in_words item.updated_at %></b></p>
+            </div>
+          </details>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="container flex justify-center gap-12">
+    <div class="">
+      <div class="sticky top-20 grid grid-cols-2 gap-x-12 gap-y-4 max-w-[1072px]">
+        <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "technique" }), title: "Techniques", quadrant: :tl) %>
+        <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "tool" }), title: "Tools") %>
+        <div class="grid justify-center w-full grid-cols-6 font-bold">
+          <div class="text-center">
+            <p>
+              Hold
+            </p>
+          </div>
+          <div class="text-center">
+            <p>
+              Assess
+            </p>
+          </div>
+          <div class="col-span-2 text-center">
+            <p>
+              Trial
+            </p>
+          </div>
+          <div class="col-span-2 text-center">
+            <p>
+              Adopt
+            </p>
+          </div>
+        </div>
+        <div class="grid justify-center w-full grid-cols-6 font-bold">
+          <div class="col-span-2 text-center">
+            <p>
+              Adopt
+            </p>
+          </div>
+          <div class="col-span-2 text-center">
+            <p>
+              Trial
+            </p>
+          </div>
+          <div class="text-center">
+            <p>
+              Assess
+            </p>
+          </div>
+          <div class="text-center">
+            <p>
+              Hold
+            </p>
+          </div>
+        </div>
+        <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "gem" }), title: "Gems", quadrant: :bl) %>
+        <%= render RadarComponent.new(blips: @blips.where(interesting_things: { kind: "platform" }), title: "Platforms", quadrant: :br) %>
+      </div>
+    </div>
+    <div class="max-w-xl" id="summaries">
+      <div class="grid max-w-xl gap-4 mt-4">
+        <% @blips.each_with_index do |item, index| %>
+          <details id="<%= item.position %>" class="px-2 py-3 group open:bg-red-50">
+            <summary class="flex items-center justify-between font-medium list-none cursor-pointer group:open:text-red-500">
+              <span class=""><%= item.position %>. <%= item.interesting_thing.name %></span>
+              <span class="transition group-open:rotate-180">
+                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </span>
+            </summary>
+            <div class="mt-3 prose group-open:animate-fadeIn">
+              <h5>Status: <b><%= item.stage.titleize %></b></h5>
+              <% if item&.interesting_thing&.description&.present? %>
+                <p><%= item.interesting_thing.description %></p>
+              <% end %>
+              <p>Last updated <b><%= time_ago_in_words item.updated_at %></b></p>
+            </div>
+          </details>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
 <%= render PanelComponent.new bg_color: "bg-white" do %>
-  <div class="flow-root">
+  <div class="flex justify-center mt-12">
     <ul role="list" class="-mb-8">
       <%= render Activity::ListComponent.with_collection(@activity) %>
     </ul>
