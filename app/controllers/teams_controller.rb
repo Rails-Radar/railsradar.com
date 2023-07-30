@@ -34,10 +34,10 @@ class TeamsController < ApplicationController
       team.is_community = false
       team.users << current_user
     end
-
-    @team = authorize current_user.teams.first
-
+    
     @kind = params[:kind].to_s.singularize
+    @kind = "technique" if @kind.blank?
+    
     @random_thing = InterestingThing.joins(:team).where(teams: { is_community: true }).where(kind: @kind).sample
     @blips = @team.blips.joins(:interesting_thing).where(interesting_things: { kind: @kind })
 
