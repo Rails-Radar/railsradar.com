@@ -1,17 +1,9 @@
 <%= render PanelComponent.new bg_color: "bg-slate-50" do %>
   <% if @team.is_community %>
     <%= render HeaderPanelComponent.new title: "Community #{@kind.titleize}" do%>
-      <%= link_to 'Techniques', "/community/techniques", class: "btn btn-secondary" %>
-      <%= link_to 'Tools', "/community/tools", class: "btn btn-secondary" %>
-      <%= link_to 'Gems', "/community/gems", class: "btn btn-secondary" %>
-      <%= link_to 'Platforms', "/community/platforms", class: "btn btn-secondary" %>
     <% end %>
   <% else %>
     <%= render HeaderPanelComponent.new title: "Your Team's #{@kind.titleize}" do %>
-      <%= link_to 'Techniques', "/team/techniques", class: "btn btn-secondary" %>
-      <%= link_to 'Tools', "/team/tools", class: "btn btn-secondary" %>
-      <%= link_to 'Gems', "/team/gems", class: "btn btn-secondary" %>
-      <%= link_to 'Platforms', "/team/platforms", class: "btn btn-secondary" %>
     <% end %>
   <% end %>
 <% end %>
@@ -20,13 +12,36 @@
   <%= render BodyPanelComponent.new notice: notice do%>
     <div class="flex">
       <%= render RadarComponent.new(blips: @blips) %>
-      <%= @blips.count %>
     </div>
-    <div class="pl-10">
+    <div class="mt-10 p-10 border">
       <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
         What's your take on the <b><%= @random_thing&.name&.singularize %></b> <%= @random_thing&.kind %> for Rails?
       </h2>
-      <%= button_to "Assess", vote_team_path(@team), params: { vote: { interesting_thing_id: @random_thing&.id, stage: :assess } }, method: :post  %>
+      <p class="mt-2">Tell <%=@team.name%> how it should view this interesting thing.</p>
+      <div class="flex my-8 space-x-8">
+      <%= button_to "Assess", vote_team_path(@team), 
+        params: { vote: { interesting_thing_id: @random_thing&.id, stage: :assess } }, 
+        method: :post,
+        class: "btn btn-primary px-3.5 py-2.5 text-lg" %>
+      <%= button_to "Trial", vote_team_path(@team), 
+        params: { vote: { interesting_thing_id: @random_thing&.id, stage: :trial } }, 
+        method: :post,
+        class: "btn btn-primary px-3.5 py-2.5 text-lg" %>
+      <%= button_to "Adopt", vote_team_path(@team), 
+        params: { vote: { interesting_thing_id: @random_thing&.id, stage: :adopt } }, 
+        method: :post,
+        class: "btn btn-primary px-3.5 py-2.5 text-lg" %>
+      <%= button_to "Hold", vote_team_path(@team), 
+        params: { vote: { interesting_thing_id: @random_thing&.id, stage: :hold } }, 
+        method: :post,
+        class: "btn btn-primary px-3.5 py-2.5 text-lg" %>
+      <%= button_to "Skip", vote_team_path(@team), 
+        params: { vote: { interesting_thing_id: @random_thing&.id, stage: :skip } }, 
+        method: :post,
+        class: "btn btn-secondary px-3.5 py-2.5 text-lg" %>
+        </div>
+
+
     </div>
   </div>
 </div>
