@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RadarComponent < ViewComponent::Base
-  def initialize(blips:, quadrant:)
+  def initialize(blips:, quadrant: :tr)
     @dot_radius = 3
     @image_size = 256
     @radar_center = radar_center_for(quadrant, @image_size)
