@@ -1,26 +1,22 @@
- 
 <div class="flex">
   <div>
     <div class="grid grid-cols-2 gap-4">
       <%= render RadarComponent.new(
-            blips: @blips.select {|b| b.interesting_thing.kind_tool?},
-            quadrant: :tl
-        ) %>
-      <%= render RadarComponent.new(
-            blips: @blips.select {|b| b.interesting_thing.kind_technique?},
-            quadrant: :tr
+        blips: @blips.select {|b| b.interesting_thing.kind_tool?},
+        quadrant: :tl
       ) %>
       <%= render RadarComponent.new(
-            blips: @blips.select {|b| b.interesting_thing.kind_gem?},
-            quadrant: :bl
+        blips: @blips.select {|b| b.interesting_thing.kind_technique?},
+        quadrant: :tr
       ) %>
       <%= render RadarComponent.new(
-            blips: @blips.select {|b| b.interesting_thing.kind_platform?},
-            quadrant: :br
+        blips: @blips.select {|b| b.interesting_thing.kind_gem?},
+        quadrant: :bl
       ) %>
-      <div>
-      </div>
-      <div class="flex-grow">
-      </div>
+      <%= render RadarComponent.new(
+        blips: @blips.select {|b| b.interesting_thing.kind_platform?},
+        quadrant: :br
+      ) %>
     </div>
   </div>
+</div>

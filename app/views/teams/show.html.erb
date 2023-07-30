@@ -1,17 +1,23 @@
 <% if @team.is_community %>
   <%= render HeaderPanelComponent.new title: "Community #{@kind.titleize}" do%>
+    <%= link_to 'Techniques', "/community/techniques", class: "btn btn-secondary" %>
+    <%= link_to 'Tools', "/community/tools", class: "btn btn-secondary" %>
+    <%= link_to 'Gems', "/community/gems", class: "btn btn-secondary" %>
+    <%= link_to 'Platforms', "/community/platforms", class: "btn btn-secondary" %>
   <% end %>
 <% else %>
   <%= render HeaderPanelComponent.new title: "Your Team's #{@kind.titleize}" do%>
+    <%= link_to 'Techniques', "/team/techniques", class: "btn btn-secondary" %>
+    <%= link_to 'Tools', "/team/tools", class: "btn btn-secondary" %>
+    <%= link_to 'Gems', "/team/gems", class: "btn btn-secondary" %>
+    <%= link_to 'Platforms', "/team/platforms", class: "btn btn-secondary" %>
   <% end %>
 <% end %>
 <%= render Navigation::StageTabsComponent.new %>
 <%= render BodyPanelComponent.new notice: notice do%>
   <div class="flex">
     <%= render RadarComponent.new(blips: @blips) %>
-    <%=@blips.count%>
-<% end %>
-<%= render PanelComponent.new do %>
+  </div>
   <div class="pl-10">
     <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
       What's your take on the <b><%= @random_thing&.name&.singularize %></b> <%= @random_thing&.kind %> for Rails?
@@ -25,7 +31,14 @@
         </div>
       </div>
     </div>
-    <%end%>
+  </div>
+<% end %>
+<% @blips.each_with_index do |item, index| %>
+  <details>
+    <summary><%= index + 1 %> <%= item.interesting_thing.name %></summary>
+    <p><%= item.interesting_thing.description || "No Description" %></p>
+  </details>
+<% end %>
 <%= render PanelComponent.new do%>
   <div class="flow-root">
     <ul role="list" class="-mb-8">

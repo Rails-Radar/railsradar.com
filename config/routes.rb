@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :teams
 
   get '/community', to: 'teams#show_community'
-  get '/team', to: 'teams#show_team'
+  get '/team', to: 'teams#show_team', as: 'my_team'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'omniauth_callbacks',
@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root 'page#index'
+  root 'teams#show_community'
 end
