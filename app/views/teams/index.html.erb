@@ -1,5 +1,5 @@
 <%= render HeaderPanelComponent.new title: 'Teams' do%>
-  <%= link_to 'New team', new_team_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <%= render NavButtonComponent.new "New Team", new_team_path %>
 <%end%>
 <%= render BodyPanelComponent.new notice: notice do %>
   <div id="teams" class="min-w-full">

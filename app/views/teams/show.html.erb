@@ -1,30 +1,7 @@
-<%= render HeaderPanelComponent.new title: 'Teams' do%>
-  <%= render ButtonComponent.new variant: 'default', text: "Edit" %>
-  <%= render ButtonComponent.new variant: 'secondary', text: "Publish" %>
+<%= render HeaderPanelComponent.new title: @team.name.to_s.titleize do%>
+  <%= render NavButtonComponent.new "Team Settings", edit_team_path %>
 <% end %>
 
-<div class="container py-12 md:items-center md:justify-between">
-  <div class="grid grid-cols-2 gap-4">
-    <%= render RadarComponent.new(
-      blips: @team.blips.joins(:interesting_thing).where({interesting_thing: {kind: 'tool'}}),
-      quadrant: :tl
-    ) %>
-
-  <%= render RadarComponent.new(
-    blips: @team.blips.joins(:interesting_thing).where({interesting_thing: {kind: 'technique'}}),
-    quadrant: :tr
-  ) %>
-
-   <%= render RadarComponent.new(
-    blips: @team.blips.joins(:interesting_thing).where({interesting_thing: {kind: 'gem'}}),
-    quadrant: :bl
-  ) %>
-
-  <%= render RadarComponent.new(
-    blips: @team.blips.joins(:interesting_thing).where({interesting_thing: {kind: 'infrastructure'}}),
-    quadrant: :br
-  ) %>
-  </div>
-  
-</div>
-
+<%= render BodyPanelComponent.new notice: notice do%>
+    <%= render FullRadarComponent.new(blips: @team.blips.joins(:interesting_thing)) %>
+<% end %>
