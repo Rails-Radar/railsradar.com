@@ -5,29 +5,21 @@ class RadarComponent < ViewComponent::Base
 
     @dot_radius = 6
     @image_size = 256
-
     @radar_center = radar_center_for(quadrant, @image_size)
-
-    stages = [
-      { name: :adopt, p: 0.3333 },
-      { name: :trial, p: 0.3333 },
-      { name: :assess, p: 0.16666 },
-      { name: :hold, p: 0.16666 }
-    ]
-
-    @stage_ranges = generate_ranges(stages, @image_size)
+    @stage_ranges = generate_ranges(@image_size)
 
     adopt = blips.select(&:stage_adopt?)
     trial = blips.select(&:stage_trial?)
     assess = blips.select(&:stage_assess?)
     hold = blips.select(&:stage_hold?)
 
-    @blips = assess
+    
     @dots = []
     @dots += place_blips(adopt, @stage_ranges[0])
     @dots += place_blips(trial, @stage_ranges[1])
     @dots += place_blips(assess, @stage_ranges[2])
     @dots += place_blips(hold, @stage_ranges[3])
+
   end
 
   def radar_center_for(quadrant, image_size)
@@ -57,7 +49,13 @@ class RadarComponent < ViewComponent::Base
     end
   end
 
-  def generate_ranges(stages, image_size)
+  def generate_ranges(image_size)
+    stages = [
+      { name: :adopt, p: 0.3333 },
+      { name: :trial, p: 0.3333 },
+      { name: :assess, p: 0.16666 },
+      { name: :hold, p: 0.16666 }
+    ]
     ranges = []
     last_edge = 0
     stages.each do |stage|
