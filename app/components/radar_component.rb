@@ -133,9 +133,8 @@ class RadarComponent < ViewComponent::Base
         angular_noise = blip.angular_noise * angular_deviation
         a = @angles[i] + angular_noise
 
-      radial_noise = blip.radial_noise * radial_deviation
-      r = middle + radial_noise
-
+        radial_noise = blip.radial_noise * radial_deviation
+        r = middle + radial_noise
 
         x = guide.x_offset + guide.x_direction * r * Math.cos(a)
         y = guide.y_offset + guide.y_direction * r * Math.sin(a)
