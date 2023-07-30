@@ -5,7 +5,7 @@
 <% if @kind.present? %>
   <div class="container flex justify-center gap-12">
     <div class="max-w-[768px]">
-      <%= render RadarComponent.new(blips: @blips, image_size: 768) %>
+      <%= render RadarComponent.new(blips: @blips, image_size: 768, title: @kind&.pluralize&.titleize) %>
       <div class="grid justify-center w-full grid-cols-6 my-2 font-bold">
         <div class="col-span-2 text-center">
           <p>
