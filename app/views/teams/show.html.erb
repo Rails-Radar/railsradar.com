@@ -1,46 +1,56 @@
-<% if @team.is_community %>
-  <%= render HeaderPanelComponent.new title: "Community #{@kind.titleize}" do%>
-    <%= link_to 'Techniques', "/community/techniques", class: "btn btn-secondary" %>
-    <%= link_to 'Tools', "/community/tools", class: "btn btn-secondary" %>
-    <%= link_to 'Gems', "/community/gems", class: "btn btn-secondary" %>
-    <%= link_to 'Platforms', "/community/platforms", class: "btn btn-secondary" %>
+<%= render PanelComponent.new bg_color: "bg-slate-50" do %>
+  <% if @team.is_community %>
+    <%= render HeaderPanelComponent.new title: "Community #{@kind.titleize}" do%>
+      <%= link_to 'Techniques', "/community/techniques", class: "btn btn-secondary" %>
+      <%= link_to 'Tools', "/community/tools", class: "btn btn-secondary" %>
+      <%= link_to 'Gems', "/community/gems", class: "btn btn-secondary" %>
+      <%= link_to 'Platforms', "/community/platforms", class: "btn btn-secondary" %>
+    <% end %>
+  <% else %>
+    <%= render HeaderPanelComponent.new title: "Your Team's #{@kind.titleize}" do %>
+      <%= link_to 'Techniques', "/team/techniques", class: "btn btn-secondary" %>
+      <%= link_to 'Tools', "/team/tools", class: "btn btn-secondary" %>
+      <%= link_to 'Gems', "/team/gems", class: "btn btn-secondary" %>
+      <%= link_to 'Platforms', "/team/platforms", class: "btn btn-secondary" %>
   <% end %>
-<% else %>
-  <%= render HeaderPanelComponent.new title: "Your Team's #{@kind.titleize}" do%>
-    <%= link_to 'Techniques', "/team/techniques", class: "btn btn-secondary" %>
-    <%= link_to 'Tools', "/team/tools", class: "btn btn-secondary" %>
-    <%= link_to 'Gems', "/team/gems", class: "btn btn-secondary" %>
-    <%= link_to 'Platforms', "/team/platforms", class: "btn btn-secondary" %>
   <% end %>
 <% end %>
-<%= render Navigation::StageTabsComponent.new %>
-<%= render BodyPanelComponent.new notice: notice do%>
-  <div class="flex">
-    <%= render RadarComponent.new(blips: @blips) %>
-    <%= @blips.count %>
-  </div>
-  <div class="pl-10">
-    <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
-      What's your take on the <b><%= @random_thing&.name&.singularize %></b> <%= @random_thing&.kind %> for Rails?
-    </h2>
-    <div class="flex pt-10 space-x-4">
-      <button class="inline-block px-5 py-3 font-medium text-white bg-green-600 rounded-lg cursor-pointer">Adopt!</button>
-      <button class="inline-block px-5 py-3 font-medium text-white bg-blue-600 rounded-lg cursor-pointer">Trial<button>
-          <button class="inline-block px-5 py-3 font-medium text-white bg-red-600 rounded-lg cursor-pointer">Assess</button>
-          <button class="inline-block px-5 py-3 font-medium text-white bg-red-600 rounded-lg cursor-pointer">Hold</button>
-          <button class="inline-block px-5 py-3 font-medium text-white bg-gray-600 rounded-lg cursor-pointer">Skip</button>
+<%= render PanelComponent.new bg_color: "bg-white" do %>
+  <%= render Navigation::StageTabsComponent.new %>
+    <%= render BodyPanelComponent.new notice: notice do%>
+      <div class="flex">
+        <%= render RadarComponent.new(blips: @blips) %>
+        <%= @blips.count %>
+      </div>
+      <div class="pl-10">
+        <h2 class="leading-7 text-gray-900 text-2xlfont-bold sm:truncate sm:text-3xl sm:tracking-tight">
+          What's your take on the <b><%= @random_thing&.name&.singularize %></b> <%= @random_thing&.kind %> for Rails?
+        </h2>
+          </div>
         </div>
       </div>
+    <% end %>
+<% end %>
+<%= render PanelComponent.new bg_color: "hover: bg- bg-slate-50" do %>
+  <% @blips.each_with_index do |item, index| %>
+    <div class="grid divide-y divide-neutral-200 max-w-xl  mt-4">
+      <div class="py-2">
+        <details class="group">
+          <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+            <span><%= index + 1 %>. <%= item.interesting_thing.name %></span>
+            <span class="transition group-open:rotate-180">
+              <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </span>
+          </summary>
+          <p class="text-neutral-600 mt-3 group-open:animate-fadeIn"><%= item.interesting_thing.description || "No Description" %></p>
+        </details>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
-<% @blips.each_with_index do |item, index| %>
-  <details>
-    <summary><%= index + 1 %> <%= item.interesting_thing.name %></summary>
-    <p><%= item.interesting_thing.description || "No Description" %></p>
-  </details>
-<% end %>
-<%= render PanelComponent.new do%>
+<%= render PanelComponent.new bg_color: "bg-white" do %>
   <div class="flow-root">
     <ul role="list" class="-mb-8">
       <li>
