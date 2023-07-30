@@ -1,27 +1,11 @@
-<div id="<%= dom_id interesting_thing %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= interesting_thing.name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= interesting_thing.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Kind:</strong>
-    <%= interesting_thing.kind %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Team:</strong>
-    <%= interesting_thing.team_id %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this interesting thing", interesting_thing, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this interesting thing', edit_interesting_thing_path(interesting_thing), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
+<tr id="<%= dom_id interesting_thing %>">
+  <td class="whitespace-nowrap px-2 py-4 text-sm font-medium text-gray-900"><%= interesting_thing.name %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= interesting_thing.kind %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= interesting_thing.team_id %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= interesting_thing.position %></td>
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+    <%= link_to "Show Thing", interesting_thing, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium bg-sky-100" %>
+  </td>
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+    <%= link_to 'Edit Thing', edit_interesting_thing_path(interesting_thing), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>  </td>
+</tr>
