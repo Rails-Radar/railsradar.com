@@ -1,18 +1,5 @@
 <%= render PanelComponent.new bg_color: "bg-slate-50" do %>
-  <% if @team.is_community %>
-    <%= render HeaderPanelComponent.new title: "Community #{@kind.titleize}" do%>
-      <%= link_to 'Techniques', "/community/techniques", class: "btn btn-secondary" %>
-      <%= link_to 'Tools', "/community/tools", class: "btn btn-secondary" %>
-      <%= link_to 'Gems', "/community/gems", class: "btn btn-secondary" %>
-      <%= link_to 'Platforms', "/community/platforms", class: "btn btn-secondary" %>
-    <% end %>
-  <% else %>
-    <%= render HeaderPanelComponent.new title: "Your Team's #{@kind.titleize}" do %>
-      <%= link_to 'Techniques', "/team/techniques", class: "btn btn-secondary" %>
-      <%= link_to 'Tools', "/team/tools", class: "btn btn-secondary" %>
-      <%= link_to 'Gems', "/team/gems", class: "btn btn-secondary" %>
-      <%= link_to 'Platforms', "/team/platforms", class: "btn btn-secondary" %>
-    <% end %>
+  <%= render HeaderPanelComponent.new title: @title do%>
   <% end %>
 <% end %>
 <%= render PanelComponent.new bg_color: "bg-white" do %>

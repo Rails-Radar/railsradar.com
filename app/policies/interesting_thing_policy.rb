@@ -3,6 +3,14 @@ class InterestingThingPolicy < ApplicationPolicy
     team_user?
   end
 
+  def new?
+    team_user?
+  end
+
+  def create?
+    team_user?
+  end
+
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
@@ -13,6 +21,6 @@ class InterestingThingPolicy < ApplicationPolicy
   private
 
   def team_user?
-    @record.team.users.include?(@user)
+    @record&.team&.users&.include?(@user)
   end
 end
