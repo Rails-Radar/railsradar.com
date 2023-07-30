@@ -21,9 +21,10 @@ class BlipCreator
       blip_activity = BlipActivity.create!(
         team: @team,
         user: @user,
-        blip: blip,
+        blip:,
         stage: @stage,
-        event: :spotted)
+        event: :spotted
+      )
       {
         success: true,
         data: {
