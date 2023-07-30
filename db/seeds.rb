@@ -22,8 +22,10 @@ user = User.create!(
 
 puts "Created Default User: #{user.email}"
 
-community = Team.create(name: 'Rails Community',
-                        is_community: true)
+community = Team.create(
+  name: 'Rails Community',
+  is_community: true
+)
 
 puts "Created Community: #{community.name}"
 
@@ -128,21 +130,20 @@ platforms.each do |n|
   puts "Created Platform: #{n}"
 end
 
-
 # Seed Blips
 
 InterestingThing.all.each do |thing|
   random_stage = %w[adopt trial assess hold].sample
   results = VoteHandler.new(
-    interesting_thing: thing, 
+    interesting_thing: thing,
     team: community,
-    user: user,
-    stage: random_stage).call
-  
+    user:,
+    stage: random_stage
+  ).call
+
   if results[:success]
-    puts results[:data][:blip_activity].to_s
+    puts results[:data][:blip_activity]
   else
     puts "Error: #{results[:error].message}"
   end
-
 end
