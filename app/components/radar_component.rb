@@ -15,10 +15,10 @@ class RadarComponent < ViewComponent::Base
     hold = blips.select(&:stage_hold?)
 
     @dots = []
-    @dots += place_blips(adopt, @stage_ranges[0], guide)
-    @dots += place_blips(trial, @stage_ranges[1], guide)
-    @dots += place_blips(assess, @stage_ranges[2], guide)
-    @dots += place_blips(hold, @stage_ranges[3], guide)
+    @dots += place_blips(adopt, @stage_ranges[0], guide, @dot_radius)
+    @dots += place_blips(trial, @stage_ranges[1], guide, @dot_radius)
+    @dots += place_blips(assess, @stage_ranges[2], guide, @dot_radius)
+    @dots += place_blips(hold, @stage_ranges[3], guide, @dot_radius)
   end
 
   def get_guides(quadrant, image_size)
@@ -127,9 +127,9 @@ class RadarComponent < ViewComponent::Base
     Math::PI * degrees / 180.0
   end
 
-  def place_blips(blips, range, guide)
+  def place_blips(blips, range, guide, dot_radius)
     middle = (range.first + range.last) / 2
-    radial_deviation = (range.last - range.first) / 2 * 0.7
+    radial_deviation = (range.last - range.first - dot_radius) / 2 * 0.8
     angle_step = degrees_to_radians(90) / (blips.length + 1)
     angular_deviation = angle_step * 0.7
     @angles = 0.upto(blips.length - 1).map { |i| angle_step * (i + 1) }
@@ -147,7 +147,7 @@ class RadarComponent < ViewComponent::Base
         x = guide.x_offset + guide.x_direction * r * Math.cos(a)
         y = guide.y_offset + guide.y_direction * r * Math.sin(a)
 
-        results << [x, y]
+        results << [x, y, blip]
         polarity *= -1
       end
     results
