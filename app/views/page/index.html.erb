@@ -2,3 +2,14 @@
   <%= render HeroComponent.new title: "Build a Rails Radar for Your Team", background: nil,
   subtitle: "Curious about the popular new tech? Take the risk out of accessing the pros and cons of the popular new changes in the Rails community.", cta: "Get Started" %>
 <% end %>
+<%= render PanelComponent.new bg_color: "bg-gray-200" do %>
+  <%= render(CtaComponent.new(
+    title: 'What is your take on service objects?'.html_safe,
+    subtitle: '',
+    buttons: [
+      ButtonComponent.new(variant: 'default', text: 'Get started'),
+      ButtonComponent.new(variant: 'secondary', text: 'Learn more →')
+    ],
+    image_url: 'https://tailwindui.com/img/component-images/dark-project-app-screenshot.png'
+  )) %>
+<% end %>
