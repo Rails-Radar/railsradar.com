@@ -15,7 +15,7 @@
             quadrant: :bl
       ) %>
       <%= render RadarComponent.new(
-            blips: @blips.select {|b| b.interesting_thing.kind_infrastructure?},
+            blips: @blips.select {|b| b.interesting_thing.kind_platform?},
             quadrant: :br
       ) %>
       <div>

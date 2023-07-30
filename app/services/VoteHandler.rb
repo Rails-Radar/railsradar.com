@@ -18,12 +18,9 @@ class VoteHandler
       existing_blip = get_last_blip(team: @team, interesting_thing: @interesting_thing)
       results = create_or_change(existing_blip, @user, @stage)
       raise results[:error] unless results[:success]
-
       results
     end
   rescue StandardError => e
-    raise e
-
     {
       success: false,
       error: e

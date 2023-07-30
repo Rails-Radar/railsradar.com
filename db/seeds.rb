@@ -9,6 +9,7 @@ Team.destroy_all
 User.destroy_all
 
 user = User.create!(
+  name: 'Community Seeder',
   email: 'admin@railsradar.com',
   password: '1080897ed2aa4b127a70dca2904d36e11080897ed2aa4b127a70dca2904d36e1'
 )
@@ -116,7 +117,7 @@ techniques.each do |n|
 end
 
 platforms.each do |n|
-  InterestingThingCreator.new(name: n, kind: :infrastructure, team: community).call
+  InterestingThingCreator.new(name: n, kind: :platform, team: community).call
   puts "Created Platform: #{n}"
 end
 
@@ -125,10 +126,16 @@ end
 
 InterestingThing.all.each do |thing|
   random_stage = %w[adopt trial assess hold].sample
-  VoteHandler.new(
+  results = VoteHandler.new(
     interesting_thing: thing, 
     team: community,
     user: user,
     stage: random_stage).call
-    puts "Spotted: #{thing.name} in #{random_stage}"
+  
+  if results[:success]
+    puts results[:data][:blip_activity].to_s
+  else
+    puts "Error: #{results[:error].message}"
+  end
+
 end
